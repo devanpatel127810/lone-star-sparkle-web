@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Phone, MapPin, Truck, Sparkles, Clock } from "lucide-react";
 import heroImg from "@/assets/hero-lone-star.webp";
 import { useEffect } from "react";
+import Reveal from "@/components/Reveal";
 
 const Index = () => {
   useEffect(() => {
@@ -62,6 +63,7 @@ const Index = () => {
           <a href="#services" className="text-sm hover:underline">Services</a>
           <a href="#pricing" className="text-sm hover:underline">Pricing</a>
           <a href="#contact" className="text-sm hover:underline">Contact</a>
+          <a href="/book-pickup" className="text-sm hover:underline">Book Pickup</a>
         </nav>
         <div className="flex items-center gap-2">
           <a href={`tel:${phone}`}>
@@ -91,7 +93,7 @@ const Index = () => {
                   <a href={`https://maps.google.com/?q=${mapQuery}`} target="_blank" rel="noopener noreferrer">
                     <Button variant="secondary" size="lg"><MapPin className="mr-2" />Get Directions</Button>
                   </a>
-                  <a href="#contact">
+                  <a href="/book-pickup">
                     <Button variant="accent" size="lg"><Truck className="mr-2" />Book Pickup</Button>
                   </a>
                 </div>
@@ -103,27 +105,33 @@ const Index = () => {
         {/* Feature cards */}
         <section id="services" className="container mx-auto py-16">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div className="rounded-xl bg-secondary p-6 shadow-soft">
-              <div className="h-40 rounded-lg bg-muted flex items-center justify-center">
-                <Sparkles className="text-accent" />
+            <Reveal>
+              <div className="rounded-xl bg-secondary p-6 shadow-soft hover-scale transition-all hover:-translate-y-1 hover:shadow-elegant">
+                <div className="h-40 rounded-lg bg-muted flex items-center justify-center">
+                  <Sparkles className="text-accent" />
+                </div>
+                <h3 className="mt-4 font-semibold text-lg">Wash & fold.</h3>
+                <p className="text-muted-foreground">Full-service laundry with same-day options for busy lives.</p>
               </div>
-              <h3 className="mt-4 font-semibold text-lg">Wash & fold.</h3>
-              <p className="text-muted-foreground">Full-service laundry with same-day options for busy lives.</p>
-            </div>
-            <div className="rounded-xl bg-secondary p-6 shadow-soft">
-              <div className="h-40 rounded-lg bg-muted flex items-center justify-center">
-                <Clock className="text-accent" />
+            </Reveal>
+            <Reveal>
+              <div className="rounded-xl bg-secondary p-6 shadow-soft hover-scale transition-all hover:-translate-y-1 hover:shadow-elegant">
+                <div className="h-40 rounded-lg bg-muted flex items-center justify-center">
+                  <Clock className="text-accent" />
+                </div>
+                <h3 className="mt-4 font-semibold text-lg">Modern machines.</h3>
+                <p className="text-muted-foreground">High-efficiency, eco‑friendly washers and dryers.</p>
               </div>
-              <h3 className="mt-4 font-semibold text-lg">Modern machines.</h3>
-              <p className="text-muted-foreground">High-efficiency, eco‑friendly washers and dryers.</p>
-            </div>
-            <div className="rounded-xl bg-secondary p-6 shadow-soft">
-              <div className="h-40 rounded-lg bg-muted flex items-center justify-center">
-                <Clock className="text-accent" />
+            </Reveal>
+            <Reveal>
+              <div className="rounded-xl bg-secondary p-6 shadow-soft hover-scale transition-all hover:-translate-y-1 hover:shadow-elegant">
+                <div className="h-40 rounded-lg bg-muted flex items-center justify-center">
+                  <Clock className="text-accent" />
+                </div>
+                <h3 className="mt-4 font-semibold text-lg">24/7 access.</h3>
+                <p className="text-muted-foreground">Open every day for your convenience in any schedule.</p>
               </div>
-              <h3 className="mt-4 font-semibold text-lg">24/7 access.</h3>
-              <p className="text-muted-foreground">Open every day for your convenience in any schedule.</p>
-            </div>
+            </Reveal>
           </div>
         </section>
 
@@ -138,7 +146,7 @@ const Index = () => {
                 <a href={`https://maps.google.com/?q=${mapQuery}`} target="_blank" rel="noopener noreferrer">
                   <Button variant="secondary"><MapPin className="mr-2" />Directions</Button>
                 </a>
-                <a href="#" aria-label="Book pickup (coming soon)"><Button variant="accent"><Truck className="mr-2" />Book Pickup</Button></a>
+                <a href="/book-pickup"><Button variant="accent"><Truck className="mr-2" />Book Pickup</Button></a>
               </div>
             </div>
             <div className="rounded-xl overflow-hidden shadow-soft">
