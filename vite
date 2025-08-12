@@ -1,0 +1,24 @@
+
+Port 8080 is in use, trying another one...
+
+  VITE v5.4.19  ready in 124 ms
+
+  ➜  Local:   http://localhost:8081/
+  ➜  Network: http://192.168.1.231:8081/
+  ➜  press h + enter to show help
+9:36:26 PM [vite] hmr update /src/pages/Index.tsx, /src/ind
+9:36:26 PM [vite] hmr update /src/pages/Index.tsx, /src/index.css
+9:36:38 PM [vite] hmr update /src/index.css
+9:36:54 PM [vite] hmr update /src/pages/BookPickup.tsx, /sr
+9:36:54 PM [vite] hmr update /src/pages/BookPickup.tsx, /src/index.css
+9:37:12 PM [vite] hmr update /src/pages/NotFound.tsx, /src/
+9:37:12 PM [vite] hmr update /src/pages/NotFound.tsx, /src/index.css
+9:37:26 PM [vite] hmr update /src/pages/Index.tsx, /src/ind
+9:37:26 PM [vite] hmr update /src/pages/Index.tsx, /src/index.css
+9:38:42 PM [vite] hmr update /src/index.css
+9:38:42 PM [vite] hmr update /src/pages/BookPickup.tsx, /sr
+9:38:42 PM [vite] hmr update /src/pages/BookPickup.tsx, /src/index.css
+9:38:42 PM [vite] hmr update /src/pages/Index.tsx, /src/ind
+9:38:42 PM [vite] hmr update /src/pages/Index.tsx, /src/index.css
+9:38:42 PM [vite] hmr update /src/pages/NotFound.tsx, /src/
+9:38:42 PM [vite] hmr update /src/pages/NotFound.tsx, /src/index.css

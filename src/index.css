@@ -88,4 +88,102 @@
   .shadow-elegant { box-shadow: var(--shadow-elegant); }
   .shadow-soft { box-shadow: var(--shadow-soft); }
   .bg-hero-gradient { background: var(--gradient-hero); }
+  
+  /* Hover effects and micro-animations */
+  .hover-scale {
+    @apply transition-all duration-200 ease-out;
+  }
+  
+  .hover-scale:hover {
+    @apply scale-105;
+  }
+  
+  /* Smooth transitions for all interactive elements */
+  .transition-smooth {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  /* Backdrop blur utilities */
+  .backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+  }
+  
+  .backdrop-blur-md {
+    backdrop-filter: blur(12px);
+  }
+  
+  /* Enhanced hover effects */
+  .group:hover .group-hover\:rotate-12 {
+    transform: rotate(12deg);
+  }
+  
+  .group:hover .group-hover\:scale-110 {
+    transform: scale(1.1);
+  }
+  
+  .group:hover .group-hover\:scale-125 {
+    transform: scale(1.25);
+  }
+  
+  .group:hover .group-hover\:translate-x-1 {
+    transform: translateX(0.25rem);
+  }
+  
+  .group:hover .group-hover\:bg-accent\/10 {
+    background-color: hsl(var(--accent) / 0.1);
+  }
+  
+  .group:hover .group-hover\:text-accent {
+    color: hsl(var(--accent));
+  }
+  
+  .group:hover .group-hover\:text-foreground {
+    color: hsl(var(--foreground));
+  }
+  
+  /* Scroll-triggered animations */
+  .float-in {
+    opacity: 0;
+    transform: translateY(2rem);
+    transition: all 0.6s ease-out;
+  }
+  
+  .float-in.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .float-in-left {
+    opacity: 0;
+    transform: translateX(-2rem);
+    transition: all 0.6s ease-out;
+  }
+  
+  .float-in-left.animate {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .float-in-right {
+    opacity: 0;
+    transform: translateX(2rem);
+    transition: all 0.6s ease-out;
+  }
+  
+  .float-in-right.animate {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .float-in-delay-1 {
+    transition-delay: 0.1s;
+  }
+  
+  .float-in-delay-2 {
+    transition-delay: 0.2s;
+  }
+  
+  .float-in-delay-3 {
+    transition-delay: 0.3s;
+  }
 }
