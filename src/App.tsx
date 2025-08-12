@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import BookPickup from "./pages/BookPickup";
+import PageWrapper from "./components/PageWrapper";
 
 const queryClient = new QueryClient();
 
@@ -16,10 +17,10 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/book-pickup" element={<BookPickup />} />
+          <Route path="/" element={<PageWrapper><Index /></PageWrapper>} />
+          <Route path="/book-pickup" element={<PageWrapper><BookPickup /></PageWrapper>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<PageWrapper><NotFound /></PageWrapper>} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
