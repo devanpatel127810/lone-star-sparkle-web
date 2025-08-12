@@ -95,17 +95,17 @@ const Index = () => {
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                   <a href={`tel:${phone}`}>
-                    <Button size="lg" className="transition-all duration-200 hover:scale-105 hover:shadow-lg hover:rotate-1">
+                    <Button size="lg" className="transition-all duration-200 hover:scale-105 hover:shadow-lg">
                       <Phone className="mr-2" />Call Now
                     </Button>
                   </a>
                   <a href={`https://maps.google.com/?q=${mapQuery}`} target="_blank" rel="noopener noreferrer">
-                    <Button variant="secondary" size="lg" className="transition-all duration-200 hover:scale-105 hover:shadow-lg hover:-rotate-1">
+                    <Button variant="secondary" size="lg" className="transition-all duration-200 hover:scale-105 hover:shadow-lg">
                       <MapPin className="mr-2" />Get Directions
                     </Button>
                   </a>
                   <a href="/book-pickup">
-                    <Button variant="accent" size="lg" className="transition-all duration-200 hover:scale-105 hover:shadow-lg hover:rotate-1">
+                    <Button variant="accent" size="lg" className="transition-all duration-200 hover:scale-105 hover:shadow-lg">
                       <Truck className="mr-2" />Book Pickup
                     </Button>
                   </a>
@@ -166,7 +166,7 @@ const Index = () => {
             <p className="text-muted-foreground text-lg">No hidden fees, just clean clothes at great prices</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 max-w-5xl mx-auto">
             <div className="float-in float-in-delay-1">
               <div className="rounded-xl bg-secondary p-8 shadow-soft hover-scale transition-all hover:-translate-y-2 hover:shadow-elegant border-2 border-transparent hover:border-accent/20 group">
                 <div className="text-center mb-6">
@@ -251,7 +251,7 @@ const Index = () => {
             <p className="text-lg text-muted-foreground">Three convenient locations serving the DFW metroplex with premium laundry services</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto">
             {/* Lewisville Location & Reviews */}
             <div className="float-in float-in-delay-1">
               <div className="space-y-4">
