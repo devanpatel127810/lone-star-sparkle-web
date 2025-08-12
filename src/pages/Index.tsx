@@ -1,19 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { Phone, MapPin, Truck, Sparkles, Clock, Menu, X, Star, Quote } from "lucide-react";
+import { Phone, MapPin, Truck, Sparkles, Clock, Star, Quote } from "lucide-react";
 import heroImg from "@/assets/hero-lone-star.webp";
-import { useEffect, useState } from "react";
-import Reveal from "@/components/Reveal";
+import { useEffect } from "react";
+import site from "@/content/site.json";
 
 const Index = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   useEffect(() => {
     document.title = "Lone Star Wash and Dry | DFW Laundromat";
-
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
 
     // Scroll observer for float-in animations
     const observerOptions = {
@@ -29,27 +22,23 @@ const Index = () => {
       });
     }, observerOptions);
 
-    // Observe all float-in elements
     const floatElements = document.querySelectorAll('.float-in, .float-in-left, .float-in-right');
     floatElements.forEach((el) => observer.observe(el));
 
-    window.addEventListener('scroll', handleScroll);
-    
     return () => {
-      window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
     };
   }, []);
 
-  const phone = "[PHONE]"; // TODO: replace with real number
-  const address = "[ADDRESS]"; // TODO: replace with real address
-  const hours = "6:00 AM - 9:30 PM"; // Updated hours
-  const mapQuery = "Lone+Star+Wash+and+Dry+DFW";
+  const phone = site.phone;
+  const address = site.address;
+  const hours = site.hours || "6:00 AM - 9:30 PM";
+  const mapQuery = site.mapQuery;
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: "Lone Star Wash and Dry",
+    name: site.name,
     image: "/opengraph.png",
     telephone: phone,
     address: {
@@ -57,10 +46,10 @@ const Index = () => {
       streetAddress: address,
       addressLocality: "DFW",
       addressRegion: "TX",
-      postalCode: "[ZIP]",
+      postalCode: site.zip,
       addressCountry: "US",
     },
-    url: "https://lonestarwashanddry.com/",
+    url: site.website,
     sameAs: [
       `https://maps.google.com/?q=${mapQuery}`
     ],
@@ -86,115 +75,6 @@ const Index = () => {
 
   return (
     <div>
-      {/* Responsive Navigation Bar */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-background/95 backdrop-blur-md shadow-lg border-b border-border/50' 
-          : 'bg-background/80 backdrop-blur-sm'
-      }`}>
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            {/* Logo - Far Left */}
-            <a href="/" className="flex items-center gap-2 font-extrabold text-xl transition-transform duration-200 hover:scale-105 hover:rotate-1 flex-shrink-0">
-              <Sparkles className="text-accent transition-all duration-300 hover:rotate-12 hover:scale-110" />
-              <span className="hidden lg:inline">Lone Star Wash & Dry</span>
-              <span className="hidden sm:inline lg:hidden">Lone Star</span>
-              <span className="sm:hidden">LSWD</span>
-            </a>
-
-            {/* Navigation - Center */}
-            <nav className="hidden md:flex items-center gap-4 lg:gap-6 mx-4">
-              <a 
-                href="#services" 
-                className="text-sm font-medium relative group transition-all duration-200 hover:text-accent hover:scale-105 whitespace-nowrap"
-              >
-                Services
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-200 group-hover:w-full"></span>
-              </a>
-              <a 
-                href="#pricing" 
-                className="text-sm font-medium relative group transition-all duration-200 hover:text-accent hover:scale-105 whitespace-nowrap"
-              >
-                Pricing
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-200 group-hover:w-full"></span>
-              </a>
-              <a 
-                href="#reviews" 
-                className="text-sm font-medium relative group transition-all duration-200 hover:text-accent hover:scale-105 whitespace-nowrap"
-              >
-                Locations & Reviews
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-200 group-hover:w-full"></span>
-              </a>
-              <a 
-                href="/book-pickup" 
-                className="text-sm font-medium relative group transition-all duration-200 hover:text-accent hover:scale-105 whitespace-nowrap"
-              >
-                Book Pickup
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-200 group-hover:w-full"></span>
-              </a>
-            </nav>
-
-            {/* Login Button - Far Right */}
-            <div className="flex items-center gap-2 flex-shrink-0">
-              <Button 
-                size="sm" 
-                variant="outline"
-                className="hidden sm:inline-flex transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-accent hover:text-accent-foreground"
-              >
-                Login
-              </Button>
-              
-              {/* Mobile Menu Button */}
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden p-2 rounded-md hover:bg-accent/10 transition-colors duration-200 hover:scale-110"
-              >
-                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Navigation Menu */}
-          {isMobileMenuOpen && (
-            <nav className="md:hidden mt-4 pb-4 border-t border-border/50">
-              <div className="flex flex-col gap-3 pt-4">
-                <a 
-                  href="#services" 
-                  className="text-sm font-medium py-2 px-3 rounded-md hover:bg-accent/10 transition-all duration-200 hover:scale-105 hover:translate-x-1"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Services
-                </a>
-                <a 
-                  href="#pricing" 
-                  className="text-sm font-medium py-2 px-3 rounded-md hover:bg-accent/10 transition-all duration-200 hover:scale-105 hover:translate-x-1"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Pricing
-                </a>
-                <a 
-                  href="#reviews" 
-                  className="text-sm font-medium py-2 px-3 rounded-md hover:bg-accent/10 transition-all duration-200 hover:scale-105 hover:translate-x-1"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Locations & Reviews
-                </a>
-                <a 
-                  href="/book-pickup" 
-                  className="text-sm font-medium py-2 px-3 rounded-md hover:bg-accent/10 transition-all duration-200 hover:scale-105 hover:translate-x-1"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Book Pickup
-                </a>
-              </div>
-            </nav>
-          )}
-        </div>
-      </header>
-
-      {/* Spacer for fixed header */}
-      <div className="h-20"></div>
-
       <main>
         {/* Hero */}
         <section className="container mx-auto px-4 py-16">
@@ -382,7 +262,7 @@ const Index = () => {
                     <Star className="text-accent" size={20} />
                   </h3>
                   <p className="text-sm text-muted-foreground mb-2">Premium location with the latest equipment</p>
-                  <div className="text-sm text-accent font-medium">Open Daily 6:00 AM - 9:30 PM</div>
+                  <div className="text-sm text-accent font-medium">Open Daily {hours}</div>
                 </div>
                 
                 <div className="bg-secondary rounded-xl p-6 shadow-soft">
@@ -419,7 +299,7 @@ const Index = () => {
                     <Star className="text-accent" size={20} />
                   </h3>
                   <p className="text-sm text-muted-foreground mb-2">Family-friendly environment with modern amenities</p>
-                  <div className="text-sm text-accent font-medium">Open Daily 6:00 AM - 9:30 PM</div>
+                  <div className="text-sm text-accent font-medium">Open Daily {hours}</div>
                 </div>
                 
                 <div className="bg-secondary rounded-xl p-6 shadow-soft">
@@ -456,7 +336,7 @@ const Index = () => {
                     <Star className="text-accent" size={20} />
                   </h3>
                   <p className="text-sm text-muted-foreground mb-2">Convenient location with express services</p>
-                  <div className="text-sm text-accent font-medium">Open Daily 6:00 AM - 9:30 PM</div>
+                  <div className="text-sm text-accent font-medium">Open Daily {hours}</div>
                 </div>
                 
                 <div className="bg-secondary rounded-xl p-6 shadow-soft">
@@ -523,7 +403,7 @@ const Index = () => {
       </main>
 
       <footer className="container mx-auto py-8 text-sm text-muted-foreground px-4">
-        <p>© {new Date().getFullYear()} Lone Star Wash and Dry — DFW, TX.</p>
+        <p>© {new Date().getFullYear()} {site.name} — DFW, TX.</p>
       </footer>
 
       <script

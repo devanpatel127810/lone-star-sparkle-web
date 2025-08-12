@@ -34,7 +34,7 @@ const Reveal: React.FC<RevealProps> = ({ children, className, threshold = 0.2 })
       ref={ref}
       className={cn(
         "will-change-transform",
-        visible ? "animate-fade-in" : "opacity-0 translate-y-2",
+        visible ? "animate-in fade-in-50 slide-in-from-bottom-2 duration-500" : "opacity-0",
         className
       )}
     >
