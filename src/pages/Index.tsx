@@ -60,10 +60,10 @@ const Index = () => {
           <span>Lone Star Wash & Dry</span>
         </a>
         <nav className="hidden sm:flex items-center gap-4">
-          <a href="#services" className="text-sm story-link">Services</a>
-          <a href="#pricing" className="text-sm story-link">Pricing</a>
-          <a href="#contact" className="text-sm story-link">Contact</a>
-          <a href="/book-pickup" className="text-sm story-link">Book Pickup</a>
+          <a href="#services" className="text-sm hover:underline">Services</a>
+          <a href="#pricing" className="text-sm hover:underline">Pricing</a>
+          <a href="#contact" className="text-sm hover:underline">Contact</a>
+          <a href="/book-pickup" className="text-sm hover:underline">Book Pickup</a>
         </nav>
         <div className="flex items-center gap-2">
           <a href={`tel:${phone}`}>
@@ -75,33 +75,31 @@ const Index = () => {
       <main>
         {/* Hero */}
         <section className="container mx-auto">
-          <Reveal>
-            <article className="relative overflow-hidden rounded-2xl shadow-elegant">
-              <img
-                src={heroImg}
-                alt="Clean, modern laundromat with rows of stainless steel washers and dryers in DFW"
-                className="w-full h-[54vh] sm:h-[60vh] object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/90 via-primary/60 to-accent/60" aria-hidden="true" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="max-w-3xl px-6 text-center text-primary-foreground">
-                  <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-3">Fast. Fresh. Clean.</h1>
-                  <p className="text-lg sm:text-xl opacity-95 mb-6">The best laundromat in town.</p>
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                    <a href={`tel:${phone}`}>
-                      <Button size="lg"><Phone className="mr-2" />Call Now</Button>
-                    </a>
-                    <a href={`https://maps.google.com/?q=${mapQuery}`} target="_blank" rel="noopener noreferrer">
-                      <Button variant="secondary" size="lg"><MapPin className="mr-2" />Get Directions</Button>
-                    </a>
-                    <a href="/book-pickup">
-                      <Button variant="accent" size="lg"><Truck className="mr-2" />Book Pickup</Button>
-                    </a>
-                  </div>
+          <article className="relative overflow-hidden rounded-2xl shadow-elegant">
+            <img
+              src={heroImg}
+              alt="Clean, modern laundromat with rows of stainless steel washers and dryers in DFW"
+              className="w-full h-[54vh] sm:h-[60vh] object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary/90 via-primary/60 to-accent/60" aria-hidden="true" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="max-w-3xl px-6 text-center text-primary-foreground">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-3">Fast. Fresh. Clean.</h1>
+                <p className="text-lg sm:text-xl opacity-95 mb-6">The best laundromat in town.</p>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <a href={`tel:${phone}`}>
+                    <Button size="lg"><Phone className="mr-2" />Call Now</Button>
+                  </a>
+                  <a href={`https://maps.google.com/?q=${mapQuery}`} target="_blank" rel="noopener noreferrer">
+                    <Button variant="secondary" size="lg"><MapPin className="mr-2" />Get Directions</Button>
+                  </a>
+                  <a href="/book-pickup">
+                    <Button variant="accent" size="lg"><Truck className="mr-2" />Book Pickup</Button>
+                  </a>
                 </div>
               </div>
-            </article>
-          </Reveal>
+            </div>
+          </article>
         </section>
 
         {/* Feature cards */}
@@ -140,30 +138,26 @@ const Index = () => {
         {/* Map & contact strip */}
         <section id="contact" className="bg-card/50 py-12">
           <div className="container mx-auto grid gap-8 md:grid-cols-2">
-            <Reveal>
-              <div>
-                <h2 className="text-2xl font-bold mb-2">Visit us</h2>
-                <p className="text-muted-foreground mb-4">{address} — {hours}</p>
-                <div className="flex flex-wrap gap-3">
-                  <a href={`tel:${phone}`}><Button><Phone className="mr-2" />Call</Button></a>
-                  <a href={`https://maps.google.com/?q=${mapQuery}`} target="_blank" rel="noopener noreferrer">
-                    <Button variant="secondary"><MapPin className="mr-2" />Directions</Button>
-                  </a>
-                  <a href="/book-pickup"><Button variant="accent"><Truck className="mr-2" />Book Pickup</Button></a>
-                </div>
+            <div>
+              <h2 className="text-2xl font-bold mb-2">Visit us</h2>
+              <p className="text-muted-foreground mb-4">{address} — {hours}</p>
+              <div className="flex flex-wrap gap-3">
+                <a href={`tel:${phone}`}><Button><Phone className="mr-2" />Call</Button></a>
+                <a href={`https://maps.google.com/?q=${mapQuery}`} target="_blank" rel="noopener noreferrer">
+                  <Button variant="secondary"><MapPin className="mr-2" />Directions</Button>
+                </a>
+                <a href="/book-pickup"><Button variant="accent"><Truck className="mr-2" />Book Pickup</Button></a>
               </div>
-            </Reveal>
-            <Reveal>
-              <div className="rounded-xl overflow-hidden shadow-soft">
-                <iframe
-                  title="Map to Lone Star Wash and Dry"
-                  src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full h-72 border-0"
-                />
-              </div>
-            </Reveal>
+            </div>
+            <div className="rounded-xl overflow-hidden shadow-soft">
+              <iframe
+                title="Map to Lone Star Wash and Dry"
+                src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-72 border-0"
+              />
+            </div>
           </div>
         </section>
       </main>

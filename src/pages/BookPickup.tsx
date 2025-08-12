@@ -9,7 +9,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { Phone, MapPin } from "lucide-react";
-import Reveal from "@/components/Reveal";
 
 const schema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -71,200 +70,192 @@ const BookPickup = () => {
   return (
     <div>
       <header className="container mx-auto py-6">
-        <Reveal>
-          <div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold">Book Pickup or Delivery</h1>
-            <p className="text-muted-foreground mt-1">Fast, friendly service across DFW.</p>
-          </div>
-        </Reveal>
+        <h1 className="text-3xl sm:text-4xl font-extrabold">Book Pickup or Delivery</h1>
+        <p className="text-muted-foreground mt-1">Fast, friendly service across DFW.</p>
       </header>
 
       <main className="container mx-auto pb-16 grid gap-8 md:grid-cols-5">
-        <Reveal className="md:col-span-3">
-          <article className="rounded-2xl bg-card shadow-soft p-6 transition-all hover:shadow-elegant">
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <FormField
-                    name="name"
-                    control={form.control}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Full name</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Jane Doe" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    name="phone"
-                    control={form.control}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Phone</FormLabel>
-                        <FormControl>
-                          <Input type="tel" placeholder="(555) 555-5555" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
+        <article className="md:col-span-3 rounded-2xl bg-card shadow-soft p-6">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
+              <div className="grid sm:grid-cols-2 gap-4">
                 <FormField
-                  name="email"
+                  name="name"
                   control={form.control}
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email (optional)</FormLabel>
+                      <FormLabel>Full name</FormLabel>
                       <FormControl>
-                        <Input type="email" placeholder="you@email.com" {...field} />
+                        <Input placeholder="Jane Doe" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <FormField
-                    name="serviceType"
-                    control={form.control}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Service</FormLabel>
-                        <FormControl>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Choose a service" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="pickup">Pickup</SelectItem>
-                              <SelectItem value="delivery">Delivery</SelectItem>
-                              <SelectItem value="both">Both</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    name="datetime"
-                    control={form.control}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Preferred date & time</FormLabel>
-                        <FormControl>
-                          <Input type="datetime-local" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
-                <div className="grid gap-4">
-                  <FormField
-                    name="address1"
-                    control={form.control}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Street address</FormLabel>
-                        <FormControl>
-                          <Input placeholder="123 Main St" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <div className="grid sm:grid-cols-3 gap-4">
-                    <FormField
-                      name="city"
-                      control={form.control}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>City</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Dallas" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      name="address2"
-                      control={form.control}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Apt, suite (optional)</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Unit 5B" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      name="zip"
-                      control={form.control}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>ZIP</FormLabel>
-                          <FormControl>
-                            <Input placeholder="75001" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-                </div>
-
                 <FormField
-                  name="notes"
+                  name="phone"
                   control={form.control}
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Notes (gate code, instructions)</FormLabel>
+                      <FormLabel>Phone</FormLabel>
                       <FormControl>
-                        <Textarea rows={4} placeholder="Any special instructions?" {...field} />
+                        <Input type="tel" placeholder="(555) 555-5555" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
+              </div>
 
-                <div className="flex items-center gap-3">
-                  <Button type="submit" size="lg">Submit Request</Button>
-                  <a href={`tel:${phone}`} className="text-sm underline inline-flex items-center gap-1"><Phone className="h-4 w-4" />Call instead</a>
-                </div>
-              </form>
-            </Form>
-          </article>
-        </Reveal>
-
-        <Reveal className="md:col-span-2">
-          <aside className="space-y-4">
-            <div className="rounded-2xl bg-secondary p-4 shadow-soft hover-scale transition-all hover:-translate-y-0.5 hover:shadow-elegant">
-              <h2 className="font-semibold mb-1">Prefer to drop by?</h2>
-              <p className="text-sm text-muted-foreground mb-3">We’re open daily. See directions below.</p>
-              <a href={`https://maps.google.com/?q=${mapQuery}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
-                <Button variant="secondary"><MapPin className="mr-2" />Get Directions</Button>
-              </a>
-            </div>
-            <div className="rounded-xl overflow-hidden shadow-soft">
-              <iframe
-                title="Map to Lone Star Wash and Dry"
-                src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-64 border-0"
+              <FormField
+                name="email"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email (optional)</FormLabel>
+                    <FormControl>
+                      <Input type="email" placeholder="you@email.com" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
-          </aside>
-        </Reveal>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <FormField
+                  name="serviceType"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Service</FormLabel>
+                      <FormControl>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Choose a service" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="pickup">Pickup</SelectItem>
+                            <SelectItem value="delivery">Delivery</SelectItem>
+                            <SelectItem value="both">Both</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="datetime"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Preferred date & time</FormLabel>
+                      <FormControl>
+                        <Input type="datetime-local" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              <div className="grid gap-4">
+                <FormField
+                  name="address1"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Street address</FormLabel>
+                      <FormControl>
+                        <Input placeholder="123 Main St" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <div className="grid sm:grid-cols-3 gap-4">
+                  <FormField
+                    name="city"
+                    control={form.control}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>City</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Dallas" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    name="address2"
+                    control={form.control}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Apt, suite (optional)</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Unit 5B" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    name="zip"
+                    control={form.control}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>ZIP</FormLabel>
+                        <FormControl>
+                          <Input placeholder="75001" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+
+              <FormField
+                name="notes"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Notes (gate code, instructions)</FormLabel>
+                    <FormControl>
+                      <Textarea rows={4} placeholder="Any special instructions?" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <div className="flex items-center gap-3">
+                <Button type="submit" size="lg">Submit Request</Button>
+                <a href={`tel:${phone}`} className="text-sm underline inline-flex items-center gap-1"><Phone className="h-4 w-4" />Call instead</a>
+              </div>
+            </form>
+          </Form>
+        </article>
+
+        <aside className="md:col-span-2 space-y-4">
+          <div className="rounded-2xl bg-secondary p-4 shadow-soft">
+            <h2 className="font-semibold mb-1">Prefer to drop by?</h2>
+            <p className="text-sm text-muted-foreground mb-3">We’re open daily. See directions below.</p>
+            <a href={`https://maps.google.com/?q=${mapQuery}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+              <Button variant="secondary"><MapPin className="mr-2" />Get Directions</Button>
+            </a>
+          </div>
+          <div className="rounded-xl overflow-hidden shadow-soft">
+            <iframe
+              title="Map to Lone Star Wash and Dry"
+              src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="w-full h-64 border-0"
+            />
+          </div>
+        </aside>
       </main>
 
       <script
