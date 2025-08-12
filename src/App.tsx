@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import BookPickup from "./pages/BookPickup";
+import Header from "@/components/Header";
 
 const queryClient = new QueryClient();
 
@@ -15,6 +16,8 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <Header />
+        <div className="h-20" />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/book-pickup" element={<BookPickup />} />

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,7 +8,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Phone, MapPin, Sparkles, Menu, X } from "lucide-react";
+import { Phone, MapPin } from "lucide-react";
+import site from "@/content/site.json";
 
 const schema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -26,18 +27,8 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 const BookPickup = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   useEffect(() => {
     document.title = "Book Laundry Pickup | Lone Star Wash & Dry";
-
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const form = useForm<FormValues>({
@@ -61,9 +52,9 @@ const BookPickup = () => {
     toast.success("Request received! We'll text to confirm shortly.");
   };
 
-  const phone = "[PHONE]";
-  const mapQuery = "Lone+Star+Wash+and+Dry+DFW";
-  const hours = "6:00 AM - 9:30 PM"; // Updated hours
+  const phone = site.phone;
+  const mapQuery = site.mapQuery;
+  const hours = site.hours || "6:00 AM - 9:30 PM";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -71,123 +62,15 @@ const BookPickup = () => {
     name: "Laundry Pickup & Delivery",
     provider: {
       "@type": "LocalBusiness",
-      name: "Lone Star Wash and Dry",
+      name: site.name,
       areaServed: "Dallas–Fort Worth",
     },
     areaServed: "Dallas–Fort Worth",
-    url: "https://lonestarwashanddry.com/book-pickup",
+    url: `${site.website}book-pickup`,
   };
 
   return (
     <div>
-      {/* Responsive Navigation Bar */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-background/95 backdrop-blur-md shadow-lg border-b border-border/50' 
-          : 'bg-background/80 backdrop-blur-sm'
-      }`}>
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            {/* Logo - Far Left */}
-            <a href="/" className="flex items-center gap-2 font-extrabold text-xl transition-transform duration-200 hover:scale-105">
-              <Sparkles className="text-accent" />
-              <span className="hidden sm:inline">Lone Star Wash & Dry</span>
-              <span className="sm:hidden">LSWD</span>
-            </a>
-
-            {/* Navigation - Center */}
-            <nav className="absolute left-1/2 transform -translate-x-1/2 hidden md:flex items-center gap-6">
-              <a 
-                href="/#services" 
-                className="text-sm font-medium relative group transition-all duration-200 hover:text-accent"
-              >
-                Services
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-200 group-hover:w-full"></span>
-              </a>
-              <a 
-                href="/#pricing" 
-                className="text-sm font-medium relative group transition-all duration-200 hover:text-accent"
-              >
-                Pricing
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-200 group-hover:w-full"></span>
-              </a>
-              <a 
-                href="/#reviews" 
-                className="text-sm font-medium relative group transition-all duration-200 hover:text-accent"
-              >
-                Locations & Reviews
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-200 group-hover:w-full"></span>
-              </a>
-              <a 
-                href="/book-pickup" 
-                className="text-sm font-medium relative group transition-all duration-200 text-accent"
-              >
-                Book Pickup
-                <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-accent"></span>
-              </a>
-            </nav>
-
-            {/* Login Button - Far Right */}
-            <div className="flex items-center gap-2">
-              <Button 
-                size="sm" 
-                variant="outline"
-                className="hidden sm:inline-flex transition-all duration-200 hover:scale-105 hover:shadow-lg"
-              >
-                Login
-              </Button>
-              
-              {/* Mobile Menu Button */}
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden p-2 rounded-md hover:bg-accent/10 transition-colors duration-200"
-              >
-                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Navigation Menu */}
-          {isMobileMenuOpen && (
-            <nav className="md:hidden mt-4 pb-4 border-t border-border/50">
-              <div className="flex flex-col gap-3 pt-4">
-                <a 
-                  href="/#services" 
-                  className="text-sm font-medium py-2 px-3 rounded-md hover:bg-accent/10 transition-colors duration-200"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Services
-                </a>
-                <a 
-                  href="/#pricing" 
-                  className="text-sm font-medium py-2 px-3 rounded-md hover:bg-accent/10 transition-colors duration-200"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Pricing
-                </a>
-                <a 
-                  href="/#reviews" 
-                  className="text-sm font-medium py-2 px-3 rounded-md hover:bg-accent/10 transition-colors duration-200"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Locations & Reviews
-                </a>
-                <a 
-                  href="/book-pickup" 
-                  className="text-sm font-medium py-2 px-3 rounded-md bg-accent/10 text-accent transition-colors duration-200"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Book Pickup
-                </a>
-              </div>
-            </nav>
-          )}
-        </div>
-      </header>
-
-      {/* Spacer for fixed header */}
-      <div className="h-20"></div>
-
       <main className="container mx-auto pb-16 grid gap-8 md:grid-cols-5 px-4">
         <article className="md:col-span-3 rounded-2xl bg-card shadow-soft p-6">
           <div className="mb-6">
