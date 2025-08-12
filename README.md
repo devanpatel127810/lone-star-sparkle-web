@@ -1,73 +1,97 @@
-# Welcome to your Lovable project
+# Lone Star Wash & Dry — MVP Website
 
-## Project info
+A fast, mobile‑first laundromat website for the DFW area. Built with React + Vite + TypeScript + Tailwind (shadcn‑ui). Includes SEO, structured data, sitemap, and accessible UX.
 
-**URL**: https://lovable.dev/projects/23821a7d-5012-4ade-81df-8f78d3134f14
+Note: The original request preferred Next.js, but this project runs on Lovable (Vite + React). This delivers the same Jamstack benefits: static hosting, great performance, and easy deployment.
 
-## How can I edit this code?
+## Quick start
 
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/23821a7d-5012-4ade-81df-8f78d3134f14) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+1. Install deps
+```bash
 npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```
+2. Run locally
+```bash
 npm run dev
 ```
+3. Build
+```bash
+npm run build && npm run preview
+```
 
-**Edit a file directly in GitHub**
+## One‑click deploy
+- Vercel: Import the repo and accept defaults (Framework: Vite). Build: `npm run build`. Output: `dist`.
+- Netlify: New site from Git. Build: `npm run build`. Publish: `dist`.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## How to update content (owner‑friendly)
+For MVP, update a few constants at the top of the homepage:
+- File: `src/pages/Index.tsx`
+- Look for these lines:
+```ts
+const phone = "[PHONE]";
+const address = "[ADDRESS]";
+const hours = "[HOURS]";
+const mapQuery = "Lone+Star+Wash+and+Dry+DFW"; // used for Google Maps
+```
+Replace the placeholders (keep the formatting).
 
-**Use GitHub Codespaces**
+Images to replace:
+- `src/assets/hero-lone-star.webp` — swap with a real storefront/interior photo (WebP/JPEG ≤ 300KB if possible).
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Want a no‑code JSON source later? Easiest path: move these values to `public/site.json` and fetch at runtime. I can wire this up in the next iteration or set up Netlify CMS/Contentful if preferred.
 
-## What technologies are used for this project?
+## Contact & conversions
+- “Call Now” uses a `tel:` link.
+- “Get Directions” opens Google Maps using `mapQuery`.
+- “Book Pickup” is a placeholder CTA ready to connect to Formspree or a serverless function.
 
-This project is built with:
+To add a contact form with Formspree:
+1. Create a Formspree project and form.
+2. Add a Contact page/section that posts to your endpoint (I can add this on request).
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## SEO
+- Title and meta description set in `index.html`.
+- LocalBusiness JSON‑LD injected on the homepage (values come from the constants above).
+- `public/sitemap.xml` generated with key routes.
+- `public/robots.txt` includes a Sitemap reference and allows all bots.
+- Canonical tag points to `https://lonestarwashanddry.com/` — update if different.
 
-## How can I deploy this project?
+## Accessibility
+- Semantic HTML (header/main/section/article/footer)
+- Single H1 per page, clear hierarchy
+- Keyboard‑navigable buttons/links; focus ring visible
+- Meaningful alt text; color contrast aligned to AA
 
-Simply open [Lovable](https://lovable.dev/projects/23821a7d-5012-4ade-81df-8f78d3134f14) and click on Share -> Publish.
+## File structure (key parts)
+```
+src/
+  assets/
+    hero-lone-star.webp
+  components/
+    ui/ (shadcn)
+  pages/
+    Index.tsx        # homepage (edit placeholders here)
+public/
+  sitemap.xml
+  robots.txt
+```
 
-## Can I connect a custom domain to my Lovable project?
+## What to replace before launch (TODO)
+- [PHONE], [ADDRESS], [ZIP], [HOURS] in `src/pages/Index.tsx`
+- Replace hero image with real photos
+- Confirm canonical domain in `index.html` and `robots.txt`
 
-Yes, you can!
+## Testing checklist
+- Lighthouse target: Performance ≥ 80, Accessibility ≥ 90, Best Practices ≥ 90, SEO ≥ 90
+- Mobile layout: buttons are thumb‑reachable, no horizontal scroll
+- CTAs: Call opens dialer; Directions opens Maps
+- Images: hero optimized; below‑the‑fold images lazy‑load
+- Keyboard nav and focus states verified
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Suggested next phase features
+- Easy: Services page, Pricing table, FAQ with accordion, Gallery grid
+- Medium: Pickup form (Formspree) with validation, Testimonials carousel, Hours by day with open/closed indicator
+- Hard: Netlify CMS/Contentful, multi‑location support, reviews sync from Google/Yelp
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## License
+This project template is provided as‑is for Lone Star Wash & Dry.
