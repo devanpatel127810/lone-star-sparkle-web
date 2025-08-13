@@ -8,7 +8,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Phone, MapPin } from "lucide-react";
 import site from "@/content/site.json";
 
 const schema = z.object({
@@ -233,9 +232,9 @@ const BookPickup = () => {
               />
 
               <div className="flex items-center gap-3">
-                <Button type="submit" size="lg" className="transition-all duration-200 hover:scale-105 hover:shadow-lg">Submit Request</Button>
-                <a href={`tel:${phone}`} className="text-sm underline inline-flex items-center gap-1 hover:text-accent transition-colors duration-200">
-                  <Phone className="h-4 w-4" />Call instead
+                <Button type="submit" size="lg">Submit Request</Button>
+                <a href={`tel:${phone}`} className="text-sm underline hover:text-accent transition-colors duration-200">
+                  Call instead
                 </a>
               </div>
             </form>
@@ -255,9 +254,7 @@ const BookPickup = () => {
               </ul>
             </div>
             <a href={`https://maps.google.com/?q=${mapQuery}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
-              <Button variant="secondary" className="transition-all duration-200 hover:scale-105 hover:shadow-lg">
-                <MapPin className="mr-2" />Get Directions
-              </Button>
+              <Button variant="secondary">Get Directions</Button>
             </a>
           </div>
           <div className="rounded-xl overflow-hidden shadow-soft">

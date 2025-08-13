@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Phone, MapPin, Truck, Sparkles, Clock, Star, Quote } from "lucide-react";
 import heroImg from "@/assets/hero-lone-star.webp";
 import { useEffect } from "react";
 import site from "@/content/site.json";
@@ -77,7 +76,7 @@ const Index = () => {
     <div>
       <main>
         {/* Hero */}
-        <section className="container mx-auto px-4 py-16">
+        <section className="container mx-auto px-4 py-12">
           <article className="relative overflow-hidden rounded-2xl shadow-elegant transition-all duration-500 hover:shadow-2xl">
             <img
               src={heroImg}
@@ -95,19 +94,13 @@ const Index = () => {
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                   <a href={`tel:${phone}`}>
-                    <Button size="lg" className="transition-all duration-200 hover:scale-105 hover:shadow-lg">
-                      <Phone className="mr-2" />Call Now
-                    </Button>
+                    <Button size="lg">Call Now</Button>
                   </a>
                   <a href={`https://maps.google.com/?q=${mapQuery}`} target="_blank" rel="noopener noreferrer">
-                    <Button variant="secondary" size="lg" className="transition-all duration-200 hover:scale-105 hover:shadow-lg">
-                      <MapPin className="mr-2" />Get Directions
-                    </Button>
+                    <Button variant="secondary" size="lg">Get Directions</Button>
                   </a>
                   <a href="/book-pickup">
-                    <Button variant="accent" size="lg" className="transition-all duration-200 hover:scale-105 hover:shadow-lg">
-                      <Truck className="mr-2" />Book Pickup
-                    </Button>
+                    <Button variant="accent" size="lg">Book Pickup</Button>
                   </a>
                 </div>
               </div>
@@ -116,7 +109,7 @@ const Index = () => {
         </section>
 
         {/* Feature cards */}
-        <section id="services" className="container mx-auto py-16 px-4">
+        <section id="services" className="container mx-auto py-12 px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Our Services</h2>
             <p className="text-lg text-muted-foreground">Professional laundry services for every need</p>
@@ -124,43 +117,28 @@ const Index = () => {
           
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div className="float-in float-in-delay-1">
-              <div className="rounded-xl bg-secondary p-6 shadow-soft hover-scale transition-all hover:-translate-y-1 hover:shadow-elegant h-full flex flex-col group">
-                <div className="h-40 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-accent/10 group-hover:scale-105">
-                  <Sparkles className="text-accent transition-all duration-300 group-hover:rotate-12 group-hover:scale-110" />
-                </div>
-                <div className="flex-1 flex flex-col">
-                  <h3 className="mt-4 font-semibold text-lg group-hover:text-accent transition-colors duration-200">Wash & fold.</h3>
-                  <p className="text-muted-foreground flex-1 group-hover:text-foreground transition-colors duration-200">Full-service laundry with same-day options for busy lives.</p>
-                </div>
+              <div className="rounded-xl bg-secondary p-6 shadow-soft h-full flex flex-col">
+                <h3 className="font-semibold text-lg">Wash & fold.</h3>
+                <p className="text-muted-foreground mt-2">Full-service laundry with same-day options for busy lives.</p>
               </div>
             </div>
             <div className="float-in float-in-delay-2">
-              <div className="rounded-xl bg-secondary p-6 shadow-soft hover-scale transition-all hover:-translate-y-1 hover:shadow-elegant h-full flex flex-col group">
-                <div className="h-40 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-accent/10 group-hover:scale-105">
-                  <Clock className="text-accent transition-all duration-300 group-hover:rotate-12 group-hover:scale-110" />
-                </div>
-                <div className="flex-1 flex flex-col">
-                  <h3 className="mt-4 font-semibold text-lg group-hover:text-accent transition-colors duration-200">200+ washers and dryers.</h3>
-                  <p className="text-muted-foreground flex-1 group-hover:text-foreground transition-colors duration-200">High-efficiency, eco‑friendly washers and dryers.</p>
-                </div>
+              <div className="rounded-xl bg-secondary p-6 shadow-soft h-full flex flex-col">
+                <h3 className="font-semibold text-lg">200+ washers and dryers.</h3>
+                <p className="text-muted-foreground mt-2">High-efficiency, eco‑friendly washers and dryers.</p>
               </div>
             </div>
             <div className="float-in float-in-delay-3">
-              <div className="rounded-xl bg-secondary p-6 shadow-soft hover-scale transition-all hover:-translate-y-1 hover:shadow-elegant h-full flex flex-col group">
-                <div className="h-40 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-accent/10 group-hover:scale-105">
-                  <Clock className="text-accent transition-all duration-300 group-hover:rotate-12 group-hover:scale-110" />
-                </div>
-                <div className="flex-1 flex flex-col">
-                  <h3 className="mt-4 font-semibold text-lg group-hover:text-accent transition-colors duration-200">Soap shop vending machines, music and more...</h3>
-                  <p className="text-muted-foreground flex-1 group-hover:text-foreground transition-colors duration-200">Open every day for your convenience in any schedule.</p>
-                </div>
+              <div className="rounded-xl bg-secondary p-6 shadow-soft h-full flex flex-col">
+                <h3 className="font-semibold text-lg">Soap shop vending machines, music and more...</h3>
+                <p className="text-muted-foreground mt-2">Open every day for your convenience in any schedule.</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* Pricing Section */}
-        <section id="pricing" className="container mx-auto py-16 px-4">
+        <section id="pricing" className="container mx-auto py-12 px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Simple, Transparent Pricing</h2>
             <p className="text-muted-foreground text-lg">No hidden fees, just clean clothes at great prices</p>
@@ -168,7 +146,7 @@ const Index = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16 max-w-5xl mx-auto">
             <div className="float-in float-in-delay-1">
-              <div className="rounded-xl bg-secondary p-8 shadow-soft hover-scale transition-all hover:-translate-y-2 hover:shadow-elegant border-2 border-transparent hover:border-accent/20 group">
+              <div className="rounded-xl bg-secondary p-8 shadow-soft border-2 border-transparent">
                 <div className="text-center mb-6">
                   <h3 className="text-xl font-semibold mb-2 group-hover:text-accent transition-colors duration-200">Self Service</h3>
                   <div className="text-3xl font-bold text-accent group-hover:scale-110 transition-transform duration-200">$2.50</div>
@@ -192,7 +170,7 @@ const Index = () => {
             </div>
             
             <div className="float-in float-in-delay-2">
-              <div className="rounded-xl bg-primary p-8 shadow-elegant hover-scale transition-all hover:-translate-y-2 hover:shadow-elegant border-2 border-accent/30 relative group">
+              <div className="rounded-xl bg-primary p-8 shadow-elegant border-2 border-accent/30 relative group">
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
                   <span className="bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-medium">Most Popular</span>
                 </div>
@@ -219,7 +197,7 @@ const Index = () => {
             </div>
             
             <div className="float-in float-in-delay-3">
-              <div className="rounded-xl bg-secondary p-8 shadow-soft hover-scale transition-all hover:-translate-y-2 hover:shadow-elegant border-2 border-transparent hover:border-accent/20 group">
+              <div className="rounded-xl bg-secondary p-8 shadow-soft border-2 border-transparent">
                 <div className="text-center mb-6">
                   <h3 className="text-xl font-semibold mb-2 group-hover:text-accent transition-colors duration-200">Dry Cleaning</h3>
                   <div className="text-3xl font-bold text-accent group-hover:scale-110 transition-transform duration-200">$8.00</div>
@@ -245,7 +223,7 @@ const Index = () => {
         </section>
 
         {/* Reviews Section */}
-        <section id="reviews" className="container mx-auto py-16 px-4">
+        <section id="reviews" className="container mx-auto py-12 px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Locations & Customer Reviews</h2>
             <p className="text-lg text-muted-foreground">Three convenient locations serving the DFW metroplex with premium laundry services</p>
@@ -256,33 +234,19 @@ const Index = () => {
             <div className="float-in float-in-delay-1">
               <div className="space-y-4">
                 <div className="text-center mb-6 p-4 bg-secondary rounded-xl border-l-4 border-l-accent">
-                  <h3 className="text-xl font-semibold mb-2 flex items-center justify-center gap-2">
-                    <Star className="text-accent" size={20} />
-                    Lewisville Location
-                    <Star className="text-accent" size={20} />
-                  </h3>
+                  <h3 className="text-xl font-semibold mb-2">Lewisville Location</h3>
                   <p className="text-sm text-muted-foreground mb-2">Premium location with the latest equipment</p>
                   <div className="text-sm text-accent font-medium">Open Daily {hours}</div>
                 </div>
                 
                 <div className="bg-secondary rounded-xl p-6 shadow-soft">
-                  <div className="flex items-center gap-1 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="text-yellow-500 fill-current" size={16} />
-                    ))}
-                  </div>
-                  <Quote className="text-accent/30 mb-2" size={20} />
+                  
                   <p className="text-sm text-muted-foreground mb-3">"Best laundromat in Lewisville! The machines are always clean and working perfectly. Staff is super friendly and helpful."</p>
                   <p className="text-xs font-medium">- Sarah M., Google Review</p>
                 </div>
                 
                 <div className="bg-secondary rounded-xl p-6 shadow-soft">
-                  <div className="flex items-center gap-1 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="text-yellow-500 fill-current" size={16} />
-                    ))}
-                  </div>
-                  <Quote className="text-accent/30 mb-2" size={20} />
+                  
                   <p className="text-sm text-muted-foreground mb-3">"Fast service and great prices. Love the wash & fold option when I'm too busy. Highly recommend!"</p>
                   <p className="text-xs font-medium">- Mike R., Yelp Review</p>
                 </div>
@@ -293,33 +257,19 @@ const Index = () => {
             <div className="float-in float-in-delay-2">
               <div className="space-y-4">
                 <div className="text-center mb-6 p-4 bg-secondary rounded-xl border-l-4 border-l-accent">
-                  <h3 className="text-xl font-semibold mb-2 flex items-center justify-center gap-2">
-                    <Star className="text-accent" size={20} />
-                    Farmers Branch Location
-                    <Star className="text-accent" size={20} />
-                  </h3>
+                  <h3 className="text-xl font-semibold mb-2">Farmers Branch Location</h3>
                   <p className="text-sm text-muted-foreground mb-2">Family-friendly environment with modern amenities</p>
                   <div className="text-sm text-accent font-medium">Open Daily {hours}</div>
                 </div>
                 
                 <div className="bg-secondary rounded-xl p-6 shadow-soft">
-                  <div className="flex items-center gap-1 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="text-yellow-500 fill-current" size={16} />
-                    ))}
-                  </div>
-                  <Quote className="text-accent/30 mb-2" size={20} />
+                  
                   <p className="text-sm text-muted-foreground mb-3">"Family-friendly environment with modern amenities. My kids love watching the machines while I do laundry."</p>
                   <p className="text-xs font-medium">- Jennifer L., Google Review</p>
                 </div>
                 
                 <div className="bg-secondary rounded-xl p-6 shadow-soft">
-                  <div className="flex items-center gap-1 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="text-yellow-500 fill-current" size={16} />
-                    ))}
-                  </div>
-                  <Quote className="text-accent/30 mb-2" size={20} />
+                  
                   <p className="text-sm text-muted-foreground mb-3">"Excellent customer service and very clean facility. The staff goes above and beyond to help customers."</p>
                   <p className="text-xs font-medium">- David K., Yelp Review</p>
                 </div>
@@ -330,33 +280,19 @@ const Index = () => {
             <div className="float-in float-in-delay-3">
               <div className="space-y-4">
                 <div className="text-center mb-6 p-4 bg-secondary rounded-xl border-l-4 border-l-accent">
-                  <h3 className="text-xl font-semibold mb-2 flex items-center justify-center gap-2">
-                    <Star className="text-accent" size={20} />
-                    Hurst Location
-                    <Star className="text-accent" size={20} />
-                  </h3>
+                  <h3 className="text-xl font-semibold mb-2">Hurst Location</h3>
                   <p className="text-sm text-muted-foreground mb-2">Convenient location with express services</p>
                   <div className="text-sm text-accent font-medium">Open Daily {hours}</div>
                 </div>
                 
                 <div className="bg-secondary rounded-xl p-6 shadow-soft">
-                  <div className="flex items-center gap-1 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="text-yellow-500 fill-current" size={16} />
-                    ))}
-                  </div>
-                  <Quote className="text-accent/30 mb-2" size={20} />
+                  
                   <p className="text-sm text-muted-foreground mb-3">"Convenient location with express services. Perfect for when I need laundry done quickly. Great quality every time!"</p>
                   <p className="text-xs font-medium">- Amanda T., Google Review</p>
                 </div>
                 
                 <div className="bg-secondary rounded-xl p-6 shadow-soft">
-                  <div className="flex items-center gap-1 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="text-yellow-500 fill-current" size={16} />
-                    ))}
-                  </div>
-                  <Quote className="text-accent/30 mb-2" size={20} />
+                  
                   <p className="text-sm text-muted-foreground mb-3">"Fast, efficient, and always clean. The staff is professional and the machines are top-notch. Best in Hurst!"</p>
                   <p className="text-xs font-medium">- Robert W., Yelp Review</p>
                 </div>
@@ -373,20 +309,21 @@ const Index = () => {
               <p className="text-muted-foreground mb-4">{address} — {hours}</p>
               <div className="flex flex-wrap gap-3">
                 <a href={`tel:${phone}`}>
-                  <Button className="transition-all duration-200 hover:scale-105 hover:shadow-lg hover:rotate-1">
-                    <Phone className="mr-2" />Call
-                  </Button>
+                  <Button>Call</Button>
                 </a>
                 <a href={`https://maps.google.com/?q=${mapQuery}`} target="_blank" rel="noopener noreferrer">
-                  <Button variant="secondary" className="transition-all duration-200 hover:scale-105 hover:shadow-lg hover:-rotate-1">
-                    <MapPin className="mr-2" />Directions
-                  </Button>
+                  <Button variant="secondary">Directions</Button>
                 </a>
                 <a href="/book-pickup">
-                  <Button variant="accent" className="transition-all duration-200 hover:scale-105 hover:shadow-lg hover:rotate-1">
-                    <Truck className="mr-2" />Book Pickup
-                  </Button>
+                  <Button variant="accent">Book Pickup</Button>
                 </a>
+              </div>
+              <div className="mt-6 border-t pt-4 max-w-prose">
+                <h3 className="text-lg font-semibold mb-2">About Lone Star Wash & Dry</h3>
+                <p className="text-sm text-muted-foreground">
+                  We are a locally owned laundromat committed to clean facilities, well‑maintained machines, and dependable service. 
+                  From quick self‑service to professional wash & fold, our team is here to make laundry simple and stress‑free.
+                </p>
               </div>
             </div>
             <div className="rounded-xl overflow-hidden shadow-soft">
