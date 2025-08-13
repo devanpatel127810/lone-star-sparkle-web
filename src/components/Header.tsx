@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useLocation } from "react-router-dom";
 
 const Header = () => {
@@ -41,13 +41,12 @@ const Header = () => {
           : "bg-background/80 backdrop-blur-sm"
       }`}
     >
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <a
             href="/"
-            className="flex items-center gap-2 font-extrabold text-xl transition-transform duration-200 hover:scale-105 hover:rotate-1 flex-shrink-0"
+            className="flex items-center gap-2 font-extrabold text-xl flex-shrink-0"
           >
-            <Sparkles className="text-accent transition-all duration-300" />
             <span className="hidden lg:inline">Lone Star Wash & Dry</span>
             <span className="hidden sm:inline lg:hidden">Lone Star</span>
             <span className="sm:hidden">LSWD</span>
@@ -58,12 +57,12 @@ const Header = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium relative group transition-all duration-200 hover:text-accent hover:scale-105 whitespace-nowrap ${
+                className={`text-sm font-medium relative group hover:text-accent whitespace-nowrap ${
                   location.pathname === "/book-pickup" && link.href === "/book-pickup" ? "text-accent" : ""
                 }`}
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-200 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-[width] duration-200" />
               </a>
             ))}
           </nav>
@@ -72,13 +71,13 @@ const Header = () => {
             <Button
               size="sm"
               variant="outline"
-              className="hidden sm:inline-flex transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-accent hover:text-accent-foreground"
+              className="hidden sm:inline-flex hover:bg-accent hover:text-accent-foreground"
             >
               Login
             </Button>
             <button
               onClick={() => setIsMobileMenuOpen((v) => !v)}
-              className="md:hidden p-2 rounded-md hover:bg-accent/10 transition-colors duration-200 hover:scale-110"
+              className="md:hidden p-2 rounded-md hover:bg-accent/10 transition-colors duration-200"
               aria-label="Toggle navigation menu"
             >
               {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -93,7 +92,7 @@ const Header = () => {
                 <a
                   key={link.href}
                   href={link.href}
-                  className={`text-sm font-medium py-2 px-3 rounded-md hover:bg-accent/10 transition-all duration-200 hover:scale-105 hover:translate-x-1 ${
+                  className={`text-sm font-medium py-2 px-3 rounded-md hover:bg-accent/10 transition-colors duration-200 ${
                     location.pathname === "/book-pickup" && link.href === "/book-pickup" ? "bg-accent/10 text-accent" : ""
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}

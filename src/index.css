@@ -79,7 +79,7 @@
   html { scroll-behavior: smooth; }
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+    font-family: "Source Sans 3", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
   }
   h1, h2, h3 { @apply tracking-tight; }
 }
@@ -91,16 +91,16 @@
   
   /* Hover effects and micro-animations */
   .hover-scale {
-    @apply transition-all duration-200 ease-out;
+    @apply transition-all duration-150 ease-out;
   }
   
   .hover-scale:hover {
-    @apply scale-105;
+    transform: scale(1.02);
   }
   
   /* Smooth transitions for all interactive elements */
   .transition-smooth {
-    @apply transition-all duration-300 ease-in-out;
+    @apply transition-all duration-200 ease-in-out;
   }
   
   /* Backdrop blur utilities */
@@ -144,8 +144,8 @@
   /* Scroll-triggered animations */
   .float-in {
     opacity: 0;
-    transform: translateY(2rem);
-    transition: all 0.6s ease-out;
+    transform: translateY(1rem);
+    transition: all 0.4s ease-out;
   }
   
   .float-in.animate {
@@ -155,8 +155,8 @@
   
   .float-in-left {
     opacity: 0;
-    transform: translateX(-2rem);
-    transition: all 0.6s ease-out;
+    transform: translateX(-1rem);
+    transition: all 0.4s ease-out;
   }
   
   .float-in-left.animate {
@@ -166,8 +166,8 @@
   
   .float-in-right {
     opacity: 0;
-    transform: translateX(2rem);
-    transition: all 0.6s ease-out;
+    transform: translateX(1rem);
+    transition: all 0.4s ease-out;
   }
   
   .float-in-right.animate {
@@ -176,14 +176,14 @@
   }
   
   .float-in-delay-1 {
-    transition-delay: 0.1s;
+    transition-delay: 0.05s;
   }
   
   .float-in-delay-2 {
-    transition-delay: 0.2s;
+    transition-delay: 0.1s;
   }
   
   .float-in-delay-3 {
-    transition-delay: 0.3s;
+    transition-delay: 0.15s;
   }
 }
