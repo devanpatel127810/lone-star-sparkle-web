@@ -27,7 +27,7 @@ const Header = () => {
     () => [
       { label: "Services", href: isHome ? "#services" : "/#services" },
       { label: "Pricing", href: isHome ? "#pricing" : "/#pricing" },
-      { label: "Locations & Reviews", href: isHome ? "#reviews" : "/#reviews" },
+      { label: "Locations", href: isHome ? "#reviews" : "/#reviews" },
       { label: "Book Pickup", href: "/book-pickup" },
     ],
     [isHome]
@@ -47,7 +47,6 @@ const Header = () => {
             href="/"
             className="flex items-center gap-2 font-extrabold text-xl transition-transform duration-200 hover:scale-105 hover:rotate-1 flex-shrink-0"
           >
-            <Sparkles className="text-accent transition-all duration-300" />
             <span className="hidden lg:inline">Lone Star Wash & Dry</span>
             <span className="hidden sm:inline lg:hidden">Lone Star</span>
             <span className="sm:hidden">LSWD</span>
