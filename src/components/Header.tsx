@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useLocation } from "react-router-dom";
 
 const Header = () => {
@@ -29,6 +29,7 @@ const Header = () => {
       { label: "Pricing", href: isHome ? "#pricing" : "/#pricing" },
       { label: "Locations", href: isHome ? "#reviews" : "/#reviews" },
       { label: "Book Pickup", href: "/book-pickup" },
+      { label: "Admin", href: "/admin" },
     ],
     [isHome]
   );
@@ -68,13 +69,17 @@ const Header = () => {
           </nav>
 
           <div className="flex items-center gap-2 flex-shrink-0">
-            <Button
-              size="sm"
-              variant="outline"
-              className="hidden sm:inline-flex transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-accent hover:text-accent-foreground"
-            >
-              Login
-            </Button>
+            <div className="flex items-center gap-2">
+              <a href="/login">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-accent hover:text-accent-foreground"
+                >
+                  Login
+                </Button>
+              </a>
+            </div>
             <button
               onClick={() => setIsMobileMenuOpen((v) => !v)}
               className="md:hidden p-2 rounded-md hover:bg-accent/10 transition-colors duration-200 hover:scale-110"
@@ -100,6 +105,15 @@ const Header = () => {
                   {link.label}
                 </a>
               ))}
+              <div className="border-t border-border/50 pt-3 mt-3">
+                <a
+                  href="/login"
+                  className="text-sm font-medium py-2 px-3 rounded-md hover:bg-accent/10 transition-all duration-200 hover:scale-105 hover:translate-x-1 block"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Login
+                </a>
+              </div>
             </div>
           </nav>
         )}
