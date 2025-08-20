@@ -91,10 +91,11 @@ const ResetPassword = () => {
 
       toast.success("Password updated successfully!");
       navigate("/login");
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Please try again";
       console.error("Password reset error:", error);
       toast.error("Password reset failed", {
-        description: error.message || "Please try again",
+        description: errorMessage,
       });
     } finally {
       setIsSubmitting(false);

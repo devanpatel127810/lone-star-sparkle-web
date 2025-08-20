@@ -41,10 +41,11 @@ const Login = () => {
 
       toast.success("Welcome back!");
       navigate("/book-pickup"); // Redirect to booking page
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Please check your credentials and try again";
       console.error("Sign in error:", error);
       toast.error("Sign in failed", {
-        description: error.message || "Please check your credentials and try again",
+        description: errorMessage,
       });
     } finally {
       setIsSubmitting(false);
@@ -87,10 +88,11 @@ const Login = () => {
           setIsSignUp(false); // Switch back to sign in
         }
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Please try again";
       console.error("Sign up error:", error);
       toast.error("Sign up failed", {
-        description: error.message || "Please try again",
+        description: errorMessage,
       });
     } finally {
       setIsSubmitting(false);
@@ -113,10 +115,11 @@ const Login = () => {
         description: "Check your email for the reset link. Click the link in your email to set a new password.",
       });
       setIsResetPassword(false); // Switch back to sign in
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Please try again";
       console.error("Reset password error:", error);
       toast.error("Password reset failed", {
-        description: error.message || "Please try again",
+        description: errorMessage,
       });
     } finally {
       setIsSubmitting(false);

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Phone, MapPin, Truck, Sparkles, Clock, Star, Quote } from "lucide-react";
+import { Phone, MapPin, Truck, Sparkles, Star, Quote } from "lucide-react";
 import heroImg from "@/assets/hero-lone-star.webp";
 import { useEffect } from "react";
 import site from "@/content/site.json";
@@ -22,7 +22,7 @@ const Index = () => {
       });
     }, observerOptions);
 
-    const floatElements = document.querySelectorAll('.float-in, .float-in-left, .float-in-right');
+    const floatElements = document.querySelectorAll('.float-in');
     floatElements.forEach((el) => observer.observe(el));
 
     return () => {
@@ -126,7 +126,7 @@ const Index = () => {
             <div className="float-in float-in-delay-1">
               <div className="rounded-xl bg-secondary p-6 shadow-soft hover-scale transition-all hover:-translate-y-1 hover:shadow-elegant h-full flex flex-col group">
                 <div className="h-40 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-accent/10 group-hover:scale-102">
-                  <Sparkles className="text-accent transition-all duration-300 group-hover:rotate-6 group-hover:scale-105" />
+                  <Sparkles className="text-accent transition-all duration-300 group-hover:scale-105" />
                 </div>
                 <div className="flex-1 flex flex-col">
                   <h3 className="mt-4 font-semibold text-lg group-hover:text-accent transition-colors duration-200 font-serif">Wash & fold.</h3>
@@ -137,7 +137,7 @@ const Index = () => {
             <div className="float-in float-in-delay-2">
               <div className="rounded-xl bg-secondary p-6 shadow-soft hover-scale transition-all hover:-translate-y-1 hover:shadow-elegant h-full flex flex-col group">
                 <div className="h-40 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-accent/10 group-hover:scale-102">
-                  <Clock className="text-accent transition-all duration-300 group-hover:rotate-6 group-hover:scale-105" />
+                  <Truck className="text-accent transition-all duration-300 group-hover:scale-105" />
                 </div>
                 <div className="flex-1 flex flex-col">
                   <h3 className="mt-4 font-semibold text-lg group-hover:text-accent transition-colors duration-200 font-serif">200+ washers and dryers.</h3>
@@ -148,7 +148,7 @@ const Index = () => {
             <div className="float-in float-in-delay-3">
               <div className="rounded-xl bg-secondary p-6 shadow-soft hover-scale transition-all hover:-translate-y-1 hover:shadow-elegant h-full flex flex-col group">
                 <div className="h-40 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-accent/10 group-hover:scale-102">
-                  <Clock className="text-accent transition-all duration-300 group-hover:rotate-6 group-hover:scale-105" />
+                  <Sparkles className="text-accent transition-all duration-300 group-hover:scale-105" />
                 </div>
                 <div className="flex-1 flex flex-col">
                   <h3 className="mt-4 font-semibold text-lg group-hover:text-accent transition-colors duration-200 font-serif">Soap shop vending machines, music and more...</h3>
@@ -228,7 +228,7 @@ const Index = () => {
                 <ul className="space-y-3 text-sm">
                   <li className="flex items-center gap-2 group-hover:translate-x-1 transition-transform duration-200">
                     <div className="w-2 h-2 bg-accent rounded-full group-hover:scale-110 transition-transform duration-200"></div>
-                    Fast andService
+                    Fast and reliable service
                   </li>
                   <li className="flex items-center gap-2 group-hover:translate-x-1 transition-transform duration-200 delay-75">
                     <div className="w-2 h-2 bg-accent rounded-full group-hover:scale-110 transition-transform duration-200"></div>
@@ -390,6 +390,9 @@ const Index = () => {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="w-full h-72 border-0"
+                onLoad={() => {
+                  // Map loaded successfully
+                }}
               />
             </div>
           </div>

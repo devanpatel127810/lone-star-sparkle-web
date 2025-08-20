@@ -28,7 +28,7 @@ type FormValues = z.infer<typeof schema>;
 const BookPickup = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionStatus, setSubmissionStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [lastBooking, setLastBooking] = useState<any>(null);
+  const [lastBooking, setLastBooking] = useState<{ id: string; full_name: string; service_type: string; pickup_date: string; pickup_time: string } | null>(null);
   const [availableTimes] = useState([
     "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM",
     "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM"
@@ -96,7 +96,7 @@ const BookPickup = () => {
         } else if (error.code === '42P01') {
           throw new Error("Service temporarily unavailable. Please try again later.");
         } else {
-          throw new Error(`Database error: ${error.message}`);
+          throw new Error(`Database error: ${error.message || 'Unknown error'}`);
         }
       }
 
@@ -111,12 +111,12 @@ const BookPickup = () => {
       form.reset();
       console.log('Booking created:', booking);
       
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Booking error:", error);
       setSubmissionStatus('error');
       
       // Show appropriate error message
-      const errorMessage = error.message || "Failed to submit booking. Please try again.";
+      const errorMessage = error instanceof Error ? error.message : "Failed to submit booking. Please try again.";
       toast.error("Booking submission failed", {
         description: errorMessage,
         duration: 5000,

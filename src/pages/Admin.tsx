@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -28,7 +28,7 @@ const Admin = () => {
 
   useEffect(() => {
     applyFilters();
-  }, [bookings, searchTerm, statusFilter, serviceFilter, dateFilter]);
+  }, [bookings, searchTerm, statusFilter, serviceFilter, dateFilter, applyFilters]);
 
   const fetchBookings = async () => {
     try {
@@ -42,7 +42,7 @@ const Admin = () => {
       
       setBookings(data || []);
       toast.success(`Loaded ${data?.length || 0} bookings`);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error fetching bookings:', error);
       toast.error('Failed to load bookings');
     } finally {
@@ -50,7 +50,7 @@ const Admin = () => {
     }
   };
 
-  const applyFilters = () => {
+  const applyFilters = useCallback(() => {
     let filtered = [...bookings];
 
     // Search filter
@@ -92,7 +92,7 @@ const Admin = () => {
             return bookingDate.toDateString() === yesterday.toDateString();
           });
           break;
-        case 'this_week':
+        case 'this_week': {
           const weekAgo = new Date(today);
           weekAgo.setDate(weekAgo.getDate() - 7);
           filtered = filtered.filter(booking => {
@@ -100,11 +100,12 @@ const Admin = () => {
             return bookingDate >= weekAgo;
           });
           break;
+        }
       }
     }
 
     setFilteredBookings(filtered);
-  };
+  }, [bookings, searchTerm, statusFilter, serviceFilter, dateFilter]);
 
   const updateBookingStatus = async (bookingId: string, newStatus: string) => {
     try {
@@ -120,12 +121,12 @@ const Admin = () => {
       // Update local state
       setBookings(prev => prev.map(booking => 
         booking.id === bookingId 
-          ? { ...booking, status: newStatus as any }
+          ? { ...booking, status: newStatus }
           : booking
       ));
 
       toast.success(`Booking status updated to ${newStatus}`);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error updating status:', error);
       toast.error('Failed to update booking status');
     } finally {
