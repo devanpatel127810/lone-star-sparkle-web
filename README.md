@@ -24,34 +24,31 @@ npm run build && npm run preview
 - Netlify: New site from Git. Build: `npm run build`. Publish: `dist`.
 
 ## How to update content (owner‑friendly)
-For MVP, update a few constants at the top of the homepage:
-- File: `src/pages/Index.tsx`
-- Look for these lines:
-```ts
-const phone = "[PHONE]";
-const address = "[ADDRESS]";
-const hours = "[HOURS]";
-const mapQuery = "Lone+Star+Wash+and+Dry+DFW"; // used for Google Maps
+Content is centralized in `src/content/site.json`:
+```json
+{
+  "name": "Lone Star Wash and Dry",
+  "phone": "[PHONE]",
+  "address": "[ADDRESS]",
+  "zip": "[ZIP]",
+  "hours": "[HOURS]",
+  "mapQuery": "Lone+Star+Wash+and+Dry+DFW",
+  "website": "https://lonestarwashanddry.com/"
+}
 ```
-Replace the placeholders (keep the formatting).
+Change the placeholder values and rebuild.
 
 Images to replace:
 - `src/assets/hero-lone-star.webp` — swap with a real storefront/interior photo (WebP/JPEG ≤ 300KB if possible).
 
-Want a no‑code JSON source later? Easiest path: move these values to `public/site.json` and fetch at runtime. I can wire this up in the next iteration or set up Netlify CMS/Contentful if preferred.
-
 ## Contact & conversions
 - “Call Now” uses a `tel:` link.
 - “Get Directions” opens Google Maps using `mapQuery`.
-- “Book Pickup” is a placeholder CTA ready to connect to Formspree or a serverless function.
-
-To add a contact form with Formspree:
-1. Create a Formspree project and form.
-2. Add a Contact page/section that posts to your endpoint (I can add this on request).
+- “Book Pickup” connects to Supabase bookings in the app.
 
 ## SEO
 - Title and meta description set in `index.html`.
-- LocalBusiness JSON‑LD injected on the homepage (values come from the constants above).
+- LocalBusiness JSON‑LD injected on the homepage.
 - `public/sitemap.xml` generated with key routes.
 - `public/robots.txt` includes a Sitemap reference and allows all bots.
 - Canonical tag points to `https://lonestarwashanddry.com/` — update if different.
@@ -70,14 +67,16 @@ src/
   components/
     ui/ (shadcn)
   pages/
-    Index.tsx        # homepage (edit placeholders here)
+    Index.tsx
+  content/
+    site.json        # owner‑editable config
 public/
   sitemap.xml
   robots.txt
 ```
 
 ## What to replace before launch (TODO)
-- [PHONE], [ADDRESS], [ZIP], [HOURS] in `src/pages/Index.tsx`
+- [PHONE], [ADDRESS], [ZIP], [HOURS] in `src/content/site.json`
 - Replace hero image with real photos
 - Confirm canonical domain in `index.html` and `robots.txt`
 
@@ -90,7 +89,7 @@ public/
 
 ## Suggested next phase features
 - Easy: Services page, Pricing table, FAQ with accordion, Gallery grid
-- Medium: Pickup form (Formspree) with validation, Testimonials carousel, Hours by day with open/closed indicator
+- Medium: Testimonials carousel, Hours by day with open/closed indicator
 - Hard: Netlify CMS/Contentful, multi‑location support, reviews sync from Google/Yelp
 
 ## License

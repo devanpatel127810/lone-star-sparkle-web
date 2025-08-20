@@ -146,7 +146,7 @@ const Admin = () => {
 
     return (
       <Badge className={`${config.color} border-0`}>
-        <Icon className="w-3 h-3 mr-1" />
+        <Icon className="w-3 h-3 mr-1" aria-hidden="true" />
         {status.charAt(0).toUpperCase() + status.slice(1)}
       </Badge>
     );
@@ -228,7 +228,7 @@ const Admin = () => {
       <Card className="mb-6">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Filter className="h-5 w-5" />
+            <Filter className="h-5 w-5" aria-hidden="true" />
             Filters & Search
           </CardTitle>
         </CardHeader>
@@ -237,7 +237,7 @@ const Admin = () => {
             <div>
               <label className="text-sm font-medium mb-2 block">Search</label>
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" aria-hidden="true" />
                 <Input
                   placeholder="Name, phone, email, or ID..."
                   value={searchTerm}
@@ -298,7 +298,7 @@ const Admin = () => {
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle>Bookings ({filteredBookings.length})</CardTitle>
           <Button onClick={fetchBookings} variant="outline" size="sm">
-            <RefreshCw className="h-4 w-4 mr-2" />
+            <RefreshCw className="h-4 w-4 mr-2" aria-hidden="true" />
             Refresh
           </Button>
         </CardHeader>
@@ -354,7 +354,7 @@ const Admin = () => {
                               toast.info(`Booking: ${booking.full_name} - ${booking.service_type}`);
                             }}
                           >
-                            <Eye className="h-4 w-4" />
+                            <Eye className="h-4 w-4" aria-hidden="true" />
                           </Button>
                           {booking.status === 'pending' && (
                             <>
@@ -368,7 +368,7 @@ const Admin = () => {
                                 {updatingStatus === booking.id ? (
                                   <Loader2 className="h-4 w-4 animate-spin" />
                                 ) : (
-                                  <CheckCircle className="h-4 w-4" />
+                                  <CheckCircle className="h-4 w-4" aria-hidden="true" />
                                 )}
                               </Button>
                               <Button
@@ -381,7 +381,7 @@ const Admin = () => {
                                 {updatingStatus === booking.id ? (
                                   <Loader2 className="h-4 w-4 animate-spin" />
                                 ) : (
-                                  <XCircle className="h-4 w-4" />
+                                  <XCircle className="h-4 w-4" aria-hidden="true" />
                                 )}
                               </Button>
                             </>
@@ -397,7 +397,7 @@ const Admin = () => {
                               {updatingStatus === booking.id ? (
                                 <Loader2 className="h-4 w-4 animate-spin" />
                               ) : (
-                                <CheckCircle className="h-4 w-4" />
+                                <CheckCircle className="h-4 w-4" aria-hidden="true" />
                               )}
                             </Button>
                           )}

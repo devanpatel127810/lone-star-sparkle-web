@@ -109,7 +109,6 @@ const BookPickup = () => {
       });
       
       form.reset();
-      console.log('Booking created:', booking);
       
     } catch (error: any) {
       console.error("Booking error:", error);
@@ -168,7 +167,7 @@ const BookPickup = () => {
           {submissionStatus === 'success' && lastBooking && (
             <div className="mb-6 p-6 bg-green-50 border border-green-200 rounded-lg">
               <div className="flex items-start gap-3">
-                <CheckCircle className="h-6 w-6 text-green-600 mt-0.5 flex-shrink-0" />
+                <CheckCircle className="h-6 w-6 text-green-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <div className="flex-1">
                   <h3 className="text-lg font-semibold text-green-900 mb-2">Booking Confirmed!</h3>
                   <div className="space-y-2 text-sm text-green-800">
@@ -198,7 +197,7 @@ const BookPickup = () => {
           {submissionStatus === 'error' && (
             <div className="mb-6 p-6 bg-red-50 border border-red-200 rounded-lg">
               <div className="flex items-start gap-3">
-                <AlertCircle className="h-6 w-6 text-red-600 mt-0.5 flex-shrink-0" />
+                <AlertCircle className="h-6 w-6 text-red-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <div className="flex-1">
                   <h3 className="text-lg font-semibold text-red-900 mb-2">Submission Failed</h3>
                   <p className="text-red-800">
@@ -380,7 +379,7 @@ const BookPickup = () => {
                   )}
                 </Button>
                 <a href={`tel:${phone}`} className="text-sm underline inline-flex items-center gap-1 hover:text-accent transition-colors duration-200">
-                  <Phone className="h-4 w-4" />Call instead
+                  <Phone className="h-4 w-4" aria-hidden="true" />Call instead
                 </a>
               </div>
             </form>
@@ -401,7 +400,7 @@ const BookPickup = () => {
             </div>
             <a href={`https://maps.google.com/?q=${mapQuery}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
               <Button variant="secondary" className="transition-all duration-200 hover:scale-102 hover:shadow-lg">
-                <MapPin className="mr-2" />Get Directions
+                <MapPin className="mr-2" aria-hidden="true" />Get Directions
               </Button>
             </a>
           </div>

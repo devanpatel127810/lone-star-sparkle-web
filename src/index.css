@@ -98,20 +98,6 @@
     @apply scale-102;
   }
   
-  /* Smooth transitions for all interactive elements */
-  .transition-smooth {
-    @apply transition-all duration-300 ease-in-out;
-  }
-  
-  /* Backdrop blur utilities */
-  .backdrop-blur-sm {
-    backdrop-filter: blur(4px);
-  }
-  
-  .backdrop-blur-md {
-    backdrop-filter: blur(12px);
-  }
-  
   /* Enhanced hover effects */
   .group:hover .group-hover\:rotate-6 {
     transform: rotate(6deg);
