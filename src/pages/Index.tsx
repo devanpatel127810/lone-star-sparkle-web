@@ -221,22 +221,22 @@ const Index = () => {
             <div className="float-in float-in-delay-3">
               <div className="rounded-xl bg-secondary p-8 shadow-soft hover-scale transition-all hover:-translate-y-1 hover:shadow-elegant border-2 border-transparent hover:border-accent/20 group">
                 <div className="text-center mb-6">
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-accent transition-colors duration-200 font-serif">Dry Cleaning</h3>
-                  <div className="text-3xl font-bold text-accent group-hover:scale-105 transition-transform duration-200">$8.00</div>
-                  <p className="text-muted-foreground">per item</p>
+                  <h3 className="text-xl font-semibold mb-2 group-hover:text-accent transition-colors duration-200 font-serif">Pick Up & Delivery</h3>
+                  <div className="text-3xl font-bold text-accent group-hover:scale-105 transition-transform duration-200">$2.00</div>
+                  <p className="text-muted-foreground">per pound</p>
                 </div>
                 <ul className="space-y-3 text-sm">
                   <li className="flex items-center gap-2 group-hover:translate-x-1 transition-transform duration-200">
                     <div className="w-2 h-2 bg-accent rounded-full group-hover:scale-110 transition-transform duration-200"></div>
-                    Professional cleaning
+                    Fast andService
                   </li>
                   <li className="flex items-center gap-2 group-hover:translate-x-1 transition-transform duration-200 delay-75">
                     <div className="w-2 h-2 bg-accent rounded-full group-hover:scale-110 transition-transform duration-200"></div>
-                    Next-day service
+                    Professional wash & fold service
                   </li>
                   <li className="flex items-center gap-2 group-hover:translate-x-1 transition-transform duration-200 delay-150">
                     <div className="w-2 h-2 bg-accent rounded-full group-hover:scale-110 transition-transform duration-200"></div>
-                    Delicate fabric care
+                    Same-day delivery available
                   </li>
                 </ul>
               </div>
