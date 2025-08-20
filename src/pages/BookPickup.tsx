@@ -159,6 +159,9 @@ const BookPickup = () => {
           <div className="mb-6">
             <h1 className="text-3xl sm:text-4xl font-bold font-serif">Book Pickup or Delivery</h1>
             <p className="text-muted-foreground mt-1">Fast, friendly service across DFW.</p>
+            
+            {/* User Status Banner */}
+            {/* Removed user status banner as per edit hint */}
           </div>
 
           {/* Success State */}

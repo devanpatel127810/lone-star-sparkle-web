@@ -105,15 +105,6 @@ const Header = () => {
                   {link.label}
                 </a>
               ))}
-              <div className="border-t border-border/50 pt-3 mt-3">
-                <a
-                  href="/login"
-                  className="text-sm font-medium py-2 px-3 rounded-md hover:bg-accent/10 transition-all duration-200 hover:scale-105 hover:translate-x-1 block"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Login
-                </a>
-              </div>
             </div>
           </nav>
         )}

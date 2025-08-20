@@ -7,6 +7,8 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import BookPickup from "./pages/BookPickup";
 import Admin from "./pages/Admin";
+import Login from "./pages/Login";
+import ResetPassword from "./pages/ResetPassword";
 import Header from "@/components/Header";
 
 const queryClient = new QueryClient();
@@ -23,7 +25,8 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/book-pickup" element={<BookPickup />} />
           <Route path="/admin" element={<Admin />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
