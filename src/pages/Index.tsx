@@ -39,7 +39,7 @@ const Index = () => {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: site.name,
-    image: "/opengraph.png",
+    image: "https://lovable.dev/opengraph-image-p98pqg.png",
     telephone: phone,
     address: {
       "@type": "PostalAddress",
@@ -83,6 +83,9 @@ const Index = () => {
               src={heroImg}
               alt="Clean, modern laundromat with rows of stainless steel washers and dryers in DFW"
               className="w-full h-[54vh] sm:h-[60vh] object-cover transition-transform duration-700 hover:scale-102"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-primary/90 via-primary/60 to-accent/60" aria-hidden="true" />
             <div className="absolute inset-0 flex items-center justify-center">
@@ -96,17 +99,17 @@ const Index = () => {
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                   <a href={`tel:${phone}`}>
                     <Button size="lg" className="transition-all duration-200 hover:scale-102 hover:shadow-lg">
-                      <Phone className="mr-2" />Call Now
+                      <Phone className="mr-2" aria-hidden="true" />Call Now
                     </Button>
                   </a>
                   <a href={`https://maps.google.com/?q=${mapQuery}`} target="_blank" rel="noopener noreferrer">
                     <Button variant="secondary" size="lg" className="transition-all duration-200 hover:scale-102 hover:shadow-lg">
-                      <MapPin className="mr-2" />Get Directions
+                      <MapPin className="mr-2" aria-hidden="true" />Get Directions
                     </Button>
                   </a>
                   <a href="/book-pickup">
                     <Button variant="accent" size="lg" className="transition-all duration-200 hover:scale-102 hover:shadow-lg">
-                      <Truck className="mr-2" />Book Pickup
+                      <Truck className="mr-2" aria-hidden="true" />Book Pickup
                     </Button>
                   </a>
                 </div>
@@ -126,7 +129,7 @@ const Index = () => {
             <div className="float-in float-in-delay-1">
               <div className="rounded-xl bg-secondary p-6 shadow-soft hover-scale transition-all hover:-translate-y-1 hover:shadow-elegant h-full flex flex-col group">
                 <div className="h-40 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-accent/10 group-hover:scale-102">
-                  <Sparkles className="text-accent transition-all duration-300 group-hover:rotate-6 group-hover:scale-105" />
+                  <Sparkles className="text-accent transition-all duration-300 group-hover:rotate-6 group-hover:scale-105" aria-hidden="true" />
                 </div>
                 <div className="flex-1 flex flex-col">
                   <h3 className="mt-4 font-semibold text-lg group-hover:text-accent transition-colors duration-200 font-serif">Wash & fold.</h3>
@@ -137,7 +140,7 @@ const Index = () => {
             <div className="float-in float-in-delay-2">
               <div className="rounded-xl bg-secondary p-6 shadow-soft hover-scale transition-all hover:-translate-y-1 hover:shadow-elegant h-full flex flex-col group">
                 <div className="h-40 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-accent/10 group-hover:scale-102">
-                  <Clock className="text-accent transition-all duration-300 group-hover:rotate-6 group-hover:scale-105" />
+                  <Clock className="text-accent transition-all duration-300 group-hover:rotate-6 group-hover:scale-105" aria-hidden="true" />
                 </div>
                 <div className="flex-1 flex flex-col">
                   <h3 className="mt-4 font-semibold text-lg group-hover:text-accent transition-colors duration-200 font-serif">200+ washers and dryers.</h3>
@@ -148,7 +151,7 @@ const Index = () => {
             <div className="float-in float-in-delay-3">
               <div className="rounded-xl bg-secondary p-6 shadow-soft hover-scale transition-all hover:-translate-y-1 hover:shadow-elegant h-full flex flex-col group">
                 <div className="h-40 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-accent/10 group-hover:scale-102">
-                  <Clock className="text-accent transition-all duration-300 group-hover:rotate-6 group-hover:scale-105" />
+                  <Clock className="text-accent transition-all duration-300 group-hover:rotate-6 group-hover:scale-105" aria-hidden="true" />
                 </div>
                 <div className="flex-1 flex flex-col">
                   <h3 className="mt-4 font-semibold text-lg group-hover:text-accent transition-colors duration-200 font-serif">Soap shop vending machines, music and more...</h3>
@@ -228,7 +231,7 @@ const Index = () => {
                 <ul className="space-y-3 text-sm">
                   <li className="flex items-center gap-2 group-hover:translate-x-1 transition-transform duration-200">
                     <div className="w-2 h-2 bg-accent rounded-full group-hover:scale-110 transition-transform duration-200"></div>
-                    Fast andService
+                    Fast and friendly service
                   </li>
                   <li className="flex items-center gap-2 group-hover:translate-x-1 transition-transform duration-200 delay-75">
                     <div className="w-2 h-2 bg-accent rounded-full group-hover:scale-110 transition-transform duration-200"></div>
@@ -266,10 +269,10 @@ const Index = () => {
                 <div className="bg-secondary rounded-xl p-6 shadow-soft">
                   <div className="flex items-center gap-1 mb-3">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="text-yellow-500 fill-current" size={16} />
+                      <Star key={i} className="text-yellow-500 fill-current" size={16} aria-hidden="true" />
                     ))}
                   </div>
-                  <Quote className="text-accent/30 mb-2" size={20} />
+                  <Quote className="text-accent/30 mb-2" size={20} aria-hidden="true" />
                   <p className="text-sm text-muted-foreground mb-3">"Best laundromat in Lewisville! The machines are always clean and working perfectly. Staff is super friendly and helpful."</p>
                   <p className="text-xs font-medium">- Sarah M., Google Review</p>
                 </div>
@@ -277,10 +280,10 @@ const Index = () => {
                 <div className="bg-secondary rounded-xl p-6 shadow-soft">
                   <div className="flex items-center gap-1 mb-3">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="text-yellow-500 fill-current" size={16} />
+                      <Star key={i} className="text-yellow-500 fill-current" size={16} aria-hidden="true" />
                     ))}
                   </div>
-                  <Quote className="text-accent/30 mb-2" size={20} />
+                  <Quote className="text-accent/30 mb-2" size={20} aria-hidden="true" />
                   <p className="text-sm text-muted-foreground mb-3">"Fast service and great prices. Love the wash & fold option when I'm too busy. Highly recommend!"</p>
                   <p className="text-xs font-medium">- Mike R., Yelp Review</p>
                 </div>
@@ -301,10 +304,10 @@ const Index = () => {
                 <div className="bg-secondary rounded-xl p-6 shadow-soft">
                   <div className="flex items-center gap-1 mb-3">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="text-yellow-500 fill-current" size={16} />
+                      <Star key={i} className="text-yellow-500 fill-current" size={16} aria-hidden="true" />
                     ))}
                   </div>
-                  <Quote className="text-accent/30 mb-2" size={20} />
+                  <Quote className="text-accent/30 mb-2" size={20} aria-hidden="true" />
                   <p className="text-sm text-muted-foreground mb-3">"Family-friendly environment with modern amenities. My kids love watching the machines while I do laundry."</p>
                   <p className="text-xs font-medium">- Jennifer L., Google Review</p>
                 </div>
@@ -312,10 +315,10 @@ const Index = () => {
                 <div className="bg-secondary rounded-xl p-6 shadow-soft">
                   <div className="flex items-center gap-1 mb-3">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="text-yellow-500 fill-current" size={16} />
+                      <Star key={i} className="text-yellow-500 fill-current" size={16} aria-hidden="true" />
                     ))}
                   </div>
-                  <Quote className="text-accent/30 mb-2" size={20} />
+                  <Quote className="text-accent/30 mb-2" size={20} aria-hidden="true" />
                   <p className="text-sm text-muted-foreground mb-3">"Excellent customer service and very clean facility. The staff goes above and beyond to help customers."</p>
                   <p className="text-xs font-medium">- David K., Yelp Review</p>
                 </div>
@@ -336,10 +339,10 @@ const Index = () => {
                 <div className="bg-secondary rounded-xl p-6 shadow-soft">
                   <div className="flex items-center gap-1 mb-3">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="text-yellow-500 fill-current" size={16} />
+                      <Star key={i} className="text-yellow-500 fill-current" size={16} aria-hidden="true" />
                     ))}
                   </div>
-                  <Quote className="text-accent/30 mb-2" size={20} />
+                  <Quote className="text-accent/30 mb-2" size={20} aria-hidden="true" />
                   <p className="text-sm text-muted-foreground mb-3">"Convenient location with express services. Perfect for when I need laundry done quickly. Great quality every time!"</p>
                   <p className="text-xs font-medium">- Amanda T., Google Review</p>
                 </div>
@@ -347,10 +350,10 @@ const Index = () => {
                 <div className="bg-secondary rounded-xl p-6 shadow-soft">
                   <div className="flex items-center gap-1 mb-3">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="text-yellow-500 fill-current" size={16} />
+                      <Star key={i} className="text-yellow-500 fill-current" size={16} aria-hidden="true" />
                     ))}
                   </div>
-                  <Quote className="text-accent/30 mb-2" size={20} />
+                  <Quote className="text-accent/30 mb-2" size={20} aria-hidden="true" />
                   <p className="text-sm text-muted-foreground mb-3">"Fast, efficient, and always clean. The staff is professional and the machines are top-notch. Best in Hurst!"</p>
                   <p className="text-xs font-medium">- Robert W., Yelp Review</p>
                 </div>
@@ -368,17 +371,17 @@ const Index = () => {
               <div className="flex flex-wrap gap-3 justify-center">
                 <a href={`tel:${phone}`}>
                   <Button className="transition-all duration-200 hover:scale-102 hover:shadow-lg hover:rotate-1">
-                    <Phone className="mr-2" />Call
+                    <Phone className="mr-2" aria-hidden="true" />Call
                   </Button>
                 </a>
                 <a href={`https://maps.google.com/?q=${mapQuery}`} target="_blank" rel="noopener noreferrer">
                   <Button variant="secondary" className="transition-all duration-200 hover:scale-102 hover:shadow-lg hover:-rotate-1">
-                    <MapPin className="mr-2" />Directions
+                    <MapPin className="mr-2" aria-hidden="true" />Directions
                   </Button>
                 </a>
                 <a href="/book-pickup">
                   <Button variant="accent" className="transition-all duration-200 hover:scale-102 hover:shadow-lg hover:rotate-1">
-                    <Truck className="mr-2" />Book Pickup
+                    <Truck className="mr-2" aria-hidden="true" />Book Pickup
                   </Button>
                 </a>
               </div>

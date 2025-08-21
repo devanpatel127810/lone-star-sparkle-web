@@ -13,18 +13,13 @@ const NotFound = () => {
     );
   }, [location.pathname]);
 
-
   return (
     <div>
-
-
-
-
       {/* 404 Content */}
       <main className="min-h-[calc(100vh-5rem)] flex items-center justify-center px-4">
         <div className="text-center max-w-md">
           <div className="mb-8">
-            <Sparkles className="text-accent mx-auto mb-4" size={64} />
+            <Sparkles className="text-accent mx-auto mb-4" size={64} aria-hidden="true" />
             <h1 className="text-6xl font-extrabold text-foreground mb-4">404</h1>
             <h2 className="text-2xl font-bold text-foreground mb-2">Page Not Found</h2>
             <p className="text-muted-foreground mb-6">
@@ -35,7 +30,7 @@ const NotFound = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a href="/">
               <Button size="lg" className="transition-all duration-200 hover:scale-105 hover:shadow-lg">
-                <Home className="mr-2" size={20} />
+                <Home className="mr-2" size={20} aria-hidden="true" />
                 Return Home
               </Button>
             </a>
@@ -43,7 +38,7 @@ const NotFound = () => {
               onClick={() => window.history.back()}
               className="text-sm text-muted-foreground hover:text-accent transition-colors duration-200 inline-flex items-center gap-1"
             >
-              <ArrowLeft size={16} />
+              <ArrowLeft size={16} aria-hidden="true" />
               Go Back
             </button>
           </div>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
 import { Loader2, Lock, ArrowLeft } from "lucide-react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
@@ -27,14 +27,6 @@ const ResetPassword = () => {
   useEffect(() => {
     const checkSession = async () => {
       try {
-        // Debug: Log all URL parameters
-        console.log('ResetPassword URL params:', {
-          accessToken,
-          refreshToken,
-          type,
-          allParams: Object.fromEntries(searchParams.entries())
-        });
-        
         // Check if we have a valid session
         const { data: { session } } = await supabase.auth.getSession();
         
@@ -140,7 +132,7 @@ const ResetPassword = () => {
       <div className="w-full max-w-md">
         <div className="mb-6">
           <Link to="/login" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground mb-4">
-            <ArrowLeft className="h-4 w-4 mr-2" />
+            <ArrowLeft className="h-4 w-4 mr-2" aria-hidden="true" />
             Back to Login
           </Link>
           <h1 className="text-3xl font-bold text-gray-900 text-center font-serif">
@@ -157,7 +149,7 @@ const ResetPassword = () => {
               <div className="space-y-2">
                 <Label htmlFor="password">New Password</Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                  <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" aria-hidden="true" />
                   <Input
                     id="password"
                     type={showPassword ? "text" : "password"}
@@ -181,7 +173,7 @@ const ResetPassword = () => {
               <div className="space-y-2">
                 <Label htmlFor="confirmPassword">Confirm New Password</Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                  <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" aria-hidden="true" />
                   <Input
                     id="confirmPassword"
                     type={showConfirmPassword ? "text" : "password"}
