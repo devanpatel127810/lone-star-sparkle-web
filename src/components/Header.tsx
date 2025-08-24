@@ -27,8 +27,9 @@ const Header = () => {
 
   const links = useMemo(
     () => [
-      { label: "Services", href: isHome ? "#services" : "/#services" },
+      
       { label: "Pricing", href: isHome ? "#pricing" : "/#pricing" },
+      { label: "Services", href: isHome ? "#services" : "/#services" },
       { label: "Locations", href: isHome ? "#reviews" : "/#reviews" },
       { label: "Book Pickup", href: "/book-pickup" },
       ...(user ? [{ label: "My Pickups", href: "/my-pickups" }] : []),
@@ -71,7 +72,7 @@ const Header = () => {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2 flex-shrink-0">
+          <div className="flex items-center gap-1.5 flex-shrink-0">
             <div className="flex items-center gap-2">
               {user ? (
                 <>

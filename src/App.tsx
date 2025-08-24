@@ -27,7 +27,7 @@ const App = () => (
         }}
       >
         <Header />
-        <div className="h-20" />
+        <div className="h-16" />
         <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center text-muted-foreground">Loading...</div>}>
           <Routes>
             <Route path="/" element={<Index />} />

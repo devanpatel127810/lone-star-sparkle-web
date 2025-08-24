@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Phone, MapPin, Truck, Sparkles, Clock, Star, Quote } from "lucide-react";
+import { Phone, MapPin, Truck, Sparkles, Clock, Star, Quote, WashingMachine } from "lucide-react";
 import heroImg from "@/assets/hero-lone-star.webp";
 import { useEffect } from "react";
 import site from "@/content/site.json";
@@ -77,12 +77,12 @@ const Index = () => {
     <div>
       <main>
         {/* Hero */}
-        <section className="container mx-auto px-4 py-12">
-          <article className="relative overflow-hidden rounded-2xl shadow-elegant transition-all duration-500 hover:shadow-2xl">
+        <section className="min-h-screen flex items-center justify-center relative">
+          <article className="absolute inset-0 w-full h-full">
             <img
               src={heroImg}
               alt="Clean, modern laundromat with rows of stainless steel washers and dryers in DFW"
-              className="w-full h-[54vh] sm:h-[60vh] object-cover transition-transform duration-700 hover:scale-102"
+              className="w-full h-full object-cover"
               loading="eager"
               decoding="async"
             />
@@ -118,7 +118,7 @@ const Index = () => {
         </section>
 
         {/* Pricing Section */}
-        <section id="pricing" className="container mx-auto py-12 px-4">
+        <section id="pricing" className="container mx-auto py-12 px-4 scroll-mt-10">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold mb-4 font-serif">Simple, Transparent Pricing</h2>
             <p className="text-muted-foreground text-lg font-medium">No hidden fees, just clean clothes at great prices</p>
@@ -135,11 +135,11 @@ const Index = () => {
                 <ul className="space-y-3 text-sm">
                   <li className="flex items-center gap-2 group-hover:translate-x-1 transition-transform duration-200">
                     <div className="w-2 h-2 bg-accent rounded-full group-hover:scale-110 transition-transform duration-200"></div>
-                    Washers: $2.50 - $6.00
+                    Washers: $2.50 - $7.00
                   </li>
                   <li className="flex items-center gap-2 group-hover:translate-x-1 transition-transform duration-200 delay-75">
                     <div className="w-2 h-2 bg-accent rounded-full group-hover:scale-110 transition-transform duration-200"></div>
-                    Dryers: $0.25 per 8 minutes
+                    Dryers: $0.25 per 7 minutes
                   </li>
                   <li className="flex items-center gap-2 group-hover:translate-x-1 transition-transform duration-200 delay-150">
                     <div className="w-2 h-2 bg-accent rounded-full group-hover:scale-110 transition-transform duration-200"></div>
@@ -156,7 +156,7 @@ const Index = () => {
                 </div>
                 <div className="text-center mb-6">
                   <h3 className="text-xl font-semibold mb-2 text-primary-foreground group-hover:scale-102 transition-transform duration-200 font-serif">Wash & Fold</h3>
-                  <div className="text-3xl font-bold text-accent-foreground group-hover:scale-105 transition-transform duration-200">$1.25</div>
+                  <div className="text-3xl font-bold text-accent-foreground group-hover:scale-105 transition-transform duration-200">$1.35</div>
                   <p className="text-primary-foreground/80">per pound</p>
                 </div>
                 <ul className="space-y-3 text-sm text-primary-foreground/90">
@@ -170,7 +170,7 @@ const Index = () => {
                   </li>
                   <li className="flex items-center gap-2 group-hover:translate-x-1 transition-transform duration-200 delay-150">
                     <div className="w-2 h-2 bg-accent rounded-full group-hover:scale-110 transition-transform duration-200"></div>
-                    Free pickup & delivery
+                    15lb minimum
                   </li>
                 </ul>
               </div>
@@ -203,43 +203,43 @@ const Index = () => {
         </section>
 
         {/* Our Services Section */}
-        <section id="services" className="container mx-auto py-12 px-4">
+        <section id="services" className="container mx-auto py-12 px-4 scroll-mt-10">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold mb-4 font-serif">Our Services</h2>
-            <p className="text-lg text-muted-foreground font-medium">Professional laundry services for every need</p>
+            <h2 className="text-3xl font-bold mb-4 font-serif">Features & Services</h2>
+            <p className="text-lg text-muted-foreground font-medium">Everything you need for a complete laundry experience</p>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div className="float-in float-in-delay-1">
               <div className="rounded-xl bg-secondary p-6 shadow-soft hover-scale transition-all hover:-translate-y-1 hover:shadow-elegant h-full flex flex-col group">
                 <div className="h-40 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-accent/10 group-hover:scale-102">
-                  <Sparkles className="text-accent transition-all duration-300 group-hover:rotate-6 group-hover:scale-105" aria-hidden="true" />
+                  <Truck className="text-accent transition-all duration-300 group-hover:rotate-6 group-hover:scale-105" aria-hidden="true" />
                 </div>
                 <div className="flex-1 flex flex-col">
-                  <h3 className="mt-4 font-semibold text-lg group-hover:text-accent transition-colors duration-200 font-serif">Wash & fold.</h3>
-                  <p className="text-muted-foreground flex-1 group-hover:text-foreground transition-colors duration-200">Full-service laundry with same-day options for busy lives.</p>
+                  <h3 className="mt-4 font-semibold text-lg group-hover:text-accent transition-colors duration-200 font-serif">Professional Wash & Fold</h3>
+                  <p className="text-muted-foreground flex-1 group-hover:text-foreground transition-colors duration-200">Premium service with All Free & Clear, Downy April Fresh, Clorox Whites, and Bounce dryer sheets.</p>
                 </div>
               </div>
             </div>
             <div className="float-in float-in-delay-2">
               <div className="rounded-xl bg-secondary p-6 shadow-soft hover-scale transition-all hover:-translate-y-1 hover:shadow-elegant h-full flex flex-col group">
                 <div className="h-40 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-accent/10 group-hover:scale-102">
-                  <Clock className="text-accent transition-all duration-300 group-hover:rotate-6 group-hover:scale-105" aria-hidden="true" />
+                  <WashingMachine className="text-accent transition-all duration-300 group-hover:rotate-6 group-hover:scale-105" aria-hidden="true" />
                 </div>
                 <div className="flex-1 flex flex-col">
-                  <h3 className="mt-4 font-semibold text-lg group-hover:text-accent transition-colors duration-200 font-serif">200+ washers and dryers.</h3>
-                  <p className="text-muted-foreground flex-1 group-hover:text-foreground transition-colors duration-200">High-efficiency, eco‑friendly washers and dryers.</p>
+                  <h3 className="mt-4 font-semibold text-lg group-hover:text-accent transition-colors duration-200 font-serif">Large Capacity Machines</h3>
+                  <p className="text-muted-foreground flex-1 group-hover:text-foreground transition-colors duration-200">Oversized washers perfect for bedding, comforters, and bulky items. 100% machine operation rate.</p>
                 </div>
               </div>
             </div>
             <div className="float-in float-in-delay-3">
               <div className="rounded-xl bg-secondary p-6 shadow-soft hover-scale transition-all hover:-translate-y-1 hover:shadow-elegant h-full flex flex-col group">
                 <div className="h-40 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-accent/10 group-hover:scale-102">
-                  <Clock className="text-accent transition-all duration-300 group-hover:rotate-6 group-hover:scale-105" aria-hidden="true" />
+                  <Sparkles className="text-accent transition-all duration-300 group-hover:rotate-6 group-hover:scale-105" aria-hidden="true" />
                 </div>
                 <div className="flex-1 flex flex-col">
-                  <h3 className="mt-4 font-semibold text-lg group-hover:text-accent transition-colors duration-200 font-serif">Soap shop, vending machines, music and more...</h3>
-                  <p className="text-muted-foreground flex-1 group-hover:text-foreground transition-colors duration-200">Open every day for your convenience in any schedule.</p>
+                  <h3 className="mt-4 font-semibold text-lg group-hover:text-accent transition-colors duration-200 font-serif">Convenience Amenities</h3>
+                  <p className="text-muted-foreground flex-1 group-hover:text-foreground transition-colors duration-200">Soap shop, vending machines, music, and more for your comfort while you do laundry.</p>
                 </div>
               </div>
             </div>
@@ -247,7 +247,7 @@ const Index = () => {
         </section>
 
         {/* Locations Section */}
-        <section id="reviews" className="container mx-auto py-12 px-4">
+        <section id="reviews" className="container mx-auto py-12 px-4 scroll-mt-10">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold mb-4 font-serif">Locations</h2>
             <p className="text-lg text-muted-foreground font-medium">Three convenient locations serving the DFW metroplex with premium laundry services</p>
@@ -259,9 +259,8 @@ const Index = () => {
               <div className="space-y-4">
                 <div className="text-center mb-6 p-4 bg-secondary rounded-xl border-l-4 border-l-accent">
                   <h3 className="text-xl font-semibold mb-2 font-serif">
-                    Lewisville Location
+                    Lewisville, TX
                   </h3>
-                  <p className="text-sm text-muted-foreground mb-2">Premium location with the latest equipment</p>
                   <div className="text-sm text-accent font-medium">Open Daily {site.hoursLewisville}</div>
                 </div>
                 
@@ -294,9 +293,8 @@ const Index = () => {
               <div className="space-y-4">
                 <div className="text-center mb-6 p-4 bg-secondary rounded-xl border-l-4 border-l-accent">
                   <h3 className="text-xl font-semibold mb-2 font-serif">
-                    Farmers Branch Location
+                    Farmers Branch, TX
                   </h3>
-                  <p className="text-sm text-muted-foreground mb-2">Family-friendly environment with modern amenities</p>
                   <div className="text-sm text-accent font-medium">Open Daily {site.hoursFarmersBranch}</div>
                 </div>
                 
@@ -329,9 +327,8 @@ const Index = () => {
               <div className="space-y-4">
                 <div className="text-center mb-6 p-4 bg-secondary rounded-xl border-l-4 border-l-accent">
                   <h3 className="text-xl font-semibold mb-2 font-serif">
-                    Hurst Location
+                    Hurst, TX
                   </h3>
-                  <p className="text-sm text-muted-foreground mb-2">Convenient location with express services</p>
                   <div className="text-sm text-accent font-medium">Open Daily {site.hoursHurst}</div>
                 </div>
                 
@@ -362,7 +359,7 @@ const Index = () => {
         </section>
 
         {/* Map & contact strip */}
-        <section id="contact" className="bg-card/50 py-12">
+        <section id="contact" className="bg-card/50 py-12 scroll-mt-10">
           <div className="container mx-auto px-4">
             <div className="text-center mb-8">
               <h2 className="text-2xl font-bold mb-2 font-serif">Visit us</h2>
@@ -402,7 +399,7 @@ const Index = () => {
         <section className="container mx-auto py-12 px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6 font-serif">About Us</h2>
-            <div className="grid md:grid-cols-2 gap-8 text-left">
+            <div className="grid md:grid-cols-2 gap-10 text-left">
               <div>
                 <h3 className="text-xl font-semibold mb-3 font-serif">Our Story</h3>
                 <p className="text-muted-foreground leading-relaxed">

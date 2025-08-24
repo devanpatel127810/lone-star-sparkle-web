@@ -137,7 +137,6 @@ const BookPickup = () => {
 
   const phone = site.phone;
   const mapQuery = site.mapQuery;
-  const hours = site.hours || "6:00 AM - 9:30 PM";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -393,13 +392,13 @@ const BookPickup = () => {
         <aside className="md:col-span-2 space-y-4">
           <div className="rounded-2xl bg-secondary p-4 shadow-soft">
             <h2 className="font-semibold mb-1 font-serif">Prefer to drop by?</h2>
-            <p className="text-sm text-muted-foreground mb-3">We're open daily from {hours}. See directions below.</p>
+            <p className="text-sm text-muted-foreground mb-3">Visit one of our convenient locations during our operating hours.</p>
             <div className="mb-3 p-3 bg-accent/5 rounded-lg border-l-4 border-l-accent">
               <p className="text-sm text-accent font-medium mb-1">Three Convenient Locations:</p>
               <ul className="text-xs text-muted-foreground space-y-1">
-                <li>• Lewisville - Premium location with latest equipment</li>
-                <li>• Farmers Branch - Family-friendly environment</li>
-                <li>• Hurst - Convenient location with express services</li>
+                <li>• Lewisville - Open Daily {site.hoursLewisville}</li>
+                <li>• Farmers Branch - Open Daily {site.hoursFarmersBranch}</li>
+                <li>• Hurst - Open Daily {site.hoursHurst}</li>
               </ul>
             </div>
             <a href={`https://maps.google.com/?q=${mapQuery}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
