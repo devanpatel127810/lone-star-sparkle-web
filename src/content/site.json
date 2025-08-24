@@ -3,7 +3,9 @@
   "phone": "[PHONE]",
   "address": "[ADDRESS]",
   "zip": "[ZIP]",
-  "hours": "[HOURS]",
+  "hoursLewisville": "6am - 9:30pm",
+  "hoursFarmersBranch": "7am - 9:30pm",
+  "hoursHurst": "7am - 9:30pm",
   "mapQuery": "Lone+Star+Wash+and+Dry+DFW",
   "website": "https://lonestarwashanddry.com/"
 }

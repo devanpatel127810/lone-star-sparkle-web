@@ -32,7 +32,7 @@ Content is centralized in `src/content/site.json`:
   "address": "[ADDRESS]",
   "zip": "[ZIP]",
   "hours": "[HOURS]",
-  "mapQuery": "Lone+Star+Wash+and+Dry+DFW",
+  "mapQuery": "Lone+Star+Wash+&+Dry+DFW",
   "website": "https://lonestarwashanddry.com/"
 }
 ```

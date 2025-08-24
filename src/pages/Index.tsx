@@ -32,7 +32,7 @@ const Index = () => {
 
   const phone = site.phone;
   const address = site.address;
-  const hours = site.hours || "6:00 AM - 9:30 PM";
+  const hours = "6:00 AM - 9:30 PM";
   const mapQuery = site.mapQuery;
 
   const jsonLd = {
@@ -84,7 +84,6 @@ const Index = () => {
               alt="Clean, modern laundromat with rows of stainless steel washers and dryers in DFW"
               className="w-full h-[54vh] sm:h-[60vh] object-cover transition-transform duration-700 hover:scale-102"
               loading="eager"
-              fetchPriority="high"
               decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-primary/90 via-primary/60 to-accent/60" aria-hidden="true" />
@@ -116,50 +115,6 @@ const Index = () => {
               </div>
             </div>
           </article>
-        </section>
-
-        {/* Feature cards */}
-        <section id="services" className="container mx-auto py-12 px-4">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold mb-4 font-serif">Our Services</h2>
-            <p className="text-lg text-muted-foreground font-medium">Professional laundry services for every need</p>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div className="float-in float-in-delay-1">
-              <div className="rounded-xl bg-secondary p-6 shadow-soft hover-scale transition-all hover:-translate-y-1 hover:shadow-elegant h-full flex flex-col group">
-                <div className="h-40 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-accent/10 group-hover:scale-102">
-                  <Sparkles className="text-accent transition-all duration-300 group-hover:rotate-6 group-hover:scale-105" aria-hidden="true" />
-                </div>
-                <div className="flex-1 flex flex-col">
-                  <h3 className="mt-4 font-semibold text-lg group-hover:text-accent transition-colors duration-200 font-serif">Wash & fold.</h3>
-                  <p className="text-muted-foreground flex-1 group-hover:text-foreground transition-colors duration-200">Full-service laundry with same-day options for busy lives.</p>
-                </div>
-              </div>
-            </div>
-            <div className="float-in float-in-delay-2">
-              <div className="rounded-xl bg-secondary p-6 shadow-soft hover-scale transition-all hover:-translate-y-1 hover:shadow-elegant h-full flex flex-col group">
-                <div className="h-40 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-accent/10 group-hover:scale-102">
-                  <Clock className="text-accent transition-all duration-300 group-hover:rotate-6 group-hover:scale-105" aria-hidden="true" />
-                </div>
-                <div className="flex-1 flex flex-col">
-                  <h3 className="mt-4 font-semibold text-lg group-hover:text-accent transition-colors duration-200 font-serif">200+ washers and dryers.</h3>
-                  <p className="text-muted-foreground flex-1 group-hover:text-foreground transition-colors duration-200">High-efficiency, eco‑friendly washers and dryers.</p>
-                </div>
-              </div>
-            </div>
-            <div className="float-in float-in-delay-3">
-              <div className="rounded-xl bg-secondary p-6 shadow-soft hover-scale transition-all hover:-translate-y-1 hover:shadow-elegant h-full flex flex-col group">
-                <div className="h-40 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-accent/10 group-hover:scale-102">
-                  <Clock className="text-accent transition-all duration-300 group-hover:rotate-6 group-hover:scale-105" aria-hidden="true" />
-                </div>
-                <div className="flex-1 flex flex-col">
-                  <h3 className="mt-4 font-semibold text-lg group-hover:text-accent transition-colors duration-200 font-serif">Soap shop vending machines, music and more...</h3>
-                  <p className="text-muted-foreground flex-1 group-hover:text-foreground transition-colors duration-200">Open every day for your convenience in any schedule.</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </section>
 
         {/* Pricing Section */}
@@ -247,6 +202,50 @@ const Index = () => {
           </div>
         </section>
 
+        {/* Our Services Section */}
+        <section id="services" className="container mx-auto py-12 px-4">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold mb-4 font-serif">Our Services</h2>
+            <p className="text-lg text-muted-foreground font-medium">Professional laundry services for every need</p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div className="float-in float-in-delay-1">
+              <div className="rounded-xl bg-secondary p-6 shadow-soft hover-scale transition-all hover:-translate-y-1 hover:shadow-elegant h-full flex flex-col group">
+                <div className="h-40 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-accent/10 group-hover:scale-102">
+                  <Sparkles className="text-accent transition-all duration-300 group-hover:rotate-6 group-hover:scale-105" aria-hidden="true" />
+                </div>
+                <div className="flex-1 flex flex-col">
+                  <h3 className="mt-4 font-semibold text-lg group-hover:text-accent transition-colors duration-200 font-serif">Wash & fold.</h3>
+                  <p className="text-muted-foreground flex-1 group-hover:text-foreground transition-colors duration-200">Full-service laundry with same-day options for busy lives.</p>
+                </div>
+              </div>
+            </div>
+            <div className="float-in float-in-delay-2">
+              <div className="rounded-xl bg-secondary p-6 shadow-soft hover-scale transition-all hover:-translate-y-1 hover:shadow-elegant h-full flex flex-col group">
+                <div className="h-40 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-accent/10 group-hover:scale-102">
+                  <Clock className="text-accent transition-all duration-300 group-hover:rotate-6 group-hover:scale-105" aria-hidden="true" />
+                </div>
+                <div className="flex-1 flex flex-col">
+                  <h3 className="mt-4 font-semibold text-lg group-hover:text-accent transition-colors duration-200 font-serif">200+ washers and dryers.</h3>
+                  <p className="text-muted-foreground flex-1 group-hover:text-foreground transition-colors duration-200">High-efficiency, eco‑friendly washers and dryers.</p>
+                </div>
+              </div>
+            </div>
+            <div className="float-in float-in-delay-3">
+              <div className="rounded-xl bg-secondary p-6 shadow-soft hover-scale transition-all hover:-translate-y-1 hover:shadow-elegant h-full flex flex-col group">
+                <div className="h-40 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-accent/10 group-hover:scale-102">
+                  <Clock className="text-accent transition-all duration-300 group-hover:rotate-6 group-hover:scale-105" aria-hidden="true" />
+                </div>
+                <div className="flex-1 flex flex-col">
+                  <h3 className="mt-4 font-semibold text-lg group-hover:text-accent transition-colors duration-200 font-serif">Soap shop, vending machines, music and more...</h3>
+                  <p className="text-muted-foreground flex-1 group-hover:text-foreground transition-colors duration-200">Open every day for your convenience in any schedule.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Locations Section */}
         <section id="reviews" className="container mx-auto py-12 px-4">
           <div className="text-center mb-10">
@@ -263,7 +262,7 @@ const Index = () => {
                     Lewisville Location
                   </h3>
                   <p className="text-sm text-muted-foreground mb-2">Premium location with the latest equipment</p>
-                  <div className="text-sm text-accent font-medium">Open Daily {hours}</div>
+                  <div className="text-sm text-accent font-medium">Open Daily {site.hoursLewisville}</div>
                 </div>
                 
                 <div className="bg-secondary rounded-xl p-6 shadow-soft">
@@ -298,7 +297,7 @@ const Index = () => {
                     Farmers Branch Location
                   </h3>
                   <p className="text-sm text-muted-foreground mb-2">Family-friendly environment with modern amenities</p>
-                  <div className="text-sm text-accent font-medium">Open Daily {hours}</div>
+                  <div className="text-sm text-accent font-medium">Open Daily {site.hoursFarmersBranch}</div>
                 </div>
                 
                 <div className="bg-secondary rounded-xl p-6 shadow-soft">
@@ -333,7 +332,7 @@ const Index = () => {
                     Hurst Location
                   </h3>
                   <p className="text-sm text-muted-foreground mb-2">Convenient location with express services</p>
-                  <div className="text-sm text-accent font-medium">Open Daily {hours}</div>
+                  <div className="text-sm text-accent font-medium">Open Daily {site.hoursHurst}</div>
                 </div>
                 
                 <div className="bg-secondary rounded-xl p-6 shadow-soft">
@@ -364,36 +363,37 @@ const Index = () => {
 
         {/* Map & contact strip */}
         <section id="contact" className="bg-card/50 py-12">
-          <div className="container mx-auto grid gap-8 md:grid-cols-2 px-4">
-            <div className="text-center">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-8">
               <h2 className="text-2xl font-bold mb-2 font-serif">Visit us</h2>
-              <p className="text-muted-foreground mb-4">{address} — {hours}</p>
-              <div className="flex flex-wrap gap-3 justify-center">
-                <a href={`tel:${phone}`}>
-                  <Button className="transition-all duration-200 hover:scale-102 hover:shadow-lg hover:rotate-1">
-                    <Phone className="mr-2" aria-hidden="true" />Call
-                  </Button>
-                </a>
-                <a href={`https://maps.google.com/?q=${mapQuery}`} target="_blank" rel="noopener noreferrer">
-                  <Button variant="secondary" className="transition-all duration-200 hover:scale-102 hover:shadow-lg hover:-rotate-1">
-                    <MapPin className="mr-2" aria-hidden="true" />Directions
-                  </Button>
-                </a>
-                <a href="/book-pickup">
-                  <Button variant="accent" className="transition-all duration-200 hover:scale-102 hover:shadow-lg hover:rotate-1">
-                    <Truck className="mr-2" aria-hidden="true" />Book Pickup
-                  </Button>
-                </a>
-              </div>
             </div>
-            <div className="rounded-xl overflow-hidden shadow-soft flex justify-center">
+            
+            <div className="rounded-xl overflow-hidden shadow-soft flex justify-center mb-8">
               <iframe
                 title="Map to Lone Star Wash and Dry"
                 src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-72 border-0"
+                className="w-full h-96 border-0"
               />
+            </div>
+            
+            <div className="flex flex-wrap gap-3 justify-center">
+              <a href={`tel:${phone}`}>
+                <Button className="transition-all duration-200 hover:scale-102 hover:shadow-lg hover:rotate-1">
+                  <Phone className="mr-2" aria-hidden="true" />Call
+                </Button>
+              </a>
+              <a href={`https://maps.google.com/?q=${mapQuery}`} target="_blank" rel="noopener noreferrer">
+                <Button variant="secondary" className="transition-all duration-200 hover:scale-102 hover:shadow-lg hover:-rotate-1">
+                  <MapPin className="mr-2" aria-hidden="true" />Directions
+                </Button>
+              </a>
+              <a href="/book-pickup">
+                <Button variant="accent" className="transition-all duration-200 hover:scale-102 hover:shadow-lg hover:rotate-1">
+                  <Truck className="mr-2" aria-hidden="true" />Book Pickup
+                </Button>
+              </a>
             </div>
           </div>
         </section>
