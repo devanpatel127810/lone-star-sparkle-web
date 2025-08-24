@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { Search, Filter, Eye, CheckCircle, XCircle, Clock, Loader2, RefreshCw } from "lucide-react";
 import { supabase } from "@/lib/supabase";
-import { Booking } from "@/lib/supabase";
+import { Booking } from "@/types";
 
 const Admin = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
@@ -56,10 +56,10 @@ const Admin = () => {
     // Search filter
     if (searchTerm) {
       filtered = filtered.filter(booking => 
-        booking.full_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        booking.phone.includes(searchTerm) ||
-        booking.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (booking.email && booking.email.toLowerCase().includes(searchTerm.toLowerCase()))
+        (booking.customer_name && booking.customer_name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (booking.customer_phone && booking.customer_phone.includes(searchTerm)) ||
+        (booking.id && booking.id.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (booking.customer_address && booking.customer_address.toLowerCase().includes(searchTerm.toLowerCase()))
       );
     }
 
@@ -239,7 +239,7 @@ const Admin = () => {
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" aria-hidden="true" />
                 <Input
-                  placeholder="Name, phone, email, or ID..."
+                  placeholder="Name, phone, address, or ID..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
@@ -329,11 +329,9 @@ const Admin = () => {
                       </td>
                       <td className="py-3 px-2">
                         <div>
-                          <div className="font-medium">{booking.full_name}</div>
-                          <div className="text-sm text-muted-foreground">{booking.phone}</div>
-                          {booking.email && (
-                            <div className="text-sm text-muted-foreground">{booking.email}</div>
-                          )}
+                                          <div className="font-medium">{booking.customer_name}</div>
+                <div className="text-sm text-muted-foreground">{booking.customer_phone}</div>
+                <div className="text-sm text-muted-foreground">{booking.customer_address}</div>
                         </div>
                       </td>
                       <td className="py-3 px-2">
@@ -351,7 +349,7 @@ const Admin = () => {
                             variant="outline"
                             onClick={() => {
                               // Show booking details in a modal or expand row
-                              toast.info(`Booking: ${booking.full_name} - ${booking.service_type}`);
+                              toast.info(`Booking: ${booking.customer_name} - ${booking.service_type}`);
                             }}
                           >
                             <Eye className="h-4 w-4" aria-hidden="true" />

@@ -1,10 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User, LogOut } from "lucide-react";
 import { useLocation } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 const Header = () => {
   const location = useLocation();
+  const { user, signOut } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -29,9 +31,10 @@ const Header = () => {
       { label: "Pricing", href: isHome ? "#pricing" : "/#pricing" },
       { label: "Locations", href: isHome ? "#reviews" : "/#reviews" },
       { label: "Book Pickup", href: "/book-pickup" },
-      { label: "Admin", href: "/admin" },
+      ...(user ? [{ label: "My Pickups", href: "/my-pickups" }] : []),
+      ...(user?.email === "devan127810@gmail.com" ? [{ label: "Admin", href: "/admin" }] : []),
     ],
-    [isHome]
+    [isHome, user]
   );
 
   return (
@@ -70,15 +73,33 @@ const Header = () => {
 
           <div className="flex items-center gap-2 flex-shrink-0">
             <div className="flex items-center gap-2">
-              <a href="/login">
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-accent hover:text-accent-foreground"
-                >
-                  Login
-                </Button>
-              </a>
+              {user ? (
+                <>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={signOut}
+                    className="transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-accent hover:text-accent-foreground"
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Logout
+                  </Button>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <User className="w-4 h-4" />
+                    <span className="hidden sm:inline">{user.email}</span>
+                  </div>
+                </>
+              ) : (
+                <a href="/login">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-accent hover:text-accent-foreground"
+                  >
+                    Login
+                  </Button>
+                </a>
+              )}
             </div>
             <button
               onClick={() => setIsMobileMenuOpen((v) => !v)}

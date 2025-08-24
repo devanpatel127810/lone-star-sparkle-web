@@ -8,9 +8,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Phone, MapPin, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { Phone, MapPin, CheckCircle, AlertCircle, Loader2, User } from "lucide-react";
 import site from "@/content/site.json";
 import { supabase } from "@/lib/supabase";
+import { useAuth } from "../hooks/useAuth";
 
 const schema = z.object({
   full_name: z.string().min(2, "Name must be at least 2 characters"),
@@ -26,6 +27,7 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 const BookPickup = () => {
+  const { user } = useAuth(); // Keep for potential future use but don't require it
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionStatus, setSubmissionStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [lastBooking, setLastBooking] = useState<any>(null);
@@ -66,18 +68,20 @@ const BookPickup = () => {
         throw new Error("Pickup date cannot be in the past");
       }
 
+      // Note: Guest bookings are now allowed
+
       // Create booking in Supabase bookings table
       const { data: booking, error } = await supabase
         .from('bookings')
         .insert([
           {
-            full_name: values.full_name,
-            phone: values.phone,
-            email: values.email || undefined,
-            service_type: values.service_type,
+            user_id: user?.id || null, // Allow null for guest bookings
+            customer_name: values.full_name,
+            customer_phone: values.phone,
             pickup_date: values.pickup_date,
             pickup_time: values.pickup_time,
-            pickup_address: values.pickup_address,
+            service_type: values.service_type,
+            customer_address: values.pickup_address,
             special_instructions: values.special_instructions || undefined,
             status: 'pending',
           }
@@ -159,8 +163,7 @@ const BookPickup = () => {
             <h1 className="text-3xl sm:text-4xl font-bold font-serif">Book Pickup or Delivery</h1>
             <p className="text-muted-foreground mt-1">Fast, friendly service across DFW.</p>
             
-            {/* User Status Banner */}
-            {/* Removed user status banner as per edit hint */}
+            {/* Removed info box - form is accessible to all users */}
           </div>
 
           {/* Success State */}
@@ -218,6 +221,7 @@ const BookPickup = () => {
           
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
+              {/* Form is now accessible to all users */}
               <div className="grid sm:grid-cols-2 gap-4">
                 <FormField
                   name="full_name"

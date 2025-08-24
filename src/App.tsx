@@ -8,9 +8,11 @@ import Header from "@/components/Header";
 const Index = lazy(() => import("./pages/Index"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const BookPickup = lazy(() => import("./pages/BookPickup"));
+const MyPickups = lazy(() => import("./pages/MyPickups"));
 const Admin = lazy(() => import("./pages/Admin"));
 const Login = lazy(() => import("./pages/Login"));
 const ResetPassword = lazy(() => import("./pages/ResetPassword"));
+const AdminGuard = lazy(() => import("./components/AdminGuard"));
 
 const queryClient = new QueryClient();
 
@@ -25,7 +27,15 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/book-pickup" element={<BookPickup />} />
-            <Route path="/admin" element={<Admin />} />
+            <Route path="/my-pickups" element={<MyPickups />} />
+            <Route 
+              path="/admin" 
+              element={
+                <AdminGuard>
+                  <Admin />
+                </AdminGuard>
+              } 
+            />
             <Route path="/login" element={<Login />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="*" element={<NotFound />} />
