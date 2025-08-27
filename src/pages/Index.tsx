@@ -179,11 +179,7 @@ const Index = () => {
                       <MapPin className="mr-2" aria-hidden="true" />Get Directions
                     </Button>
                   </a>
-                  <a href="/book-pickup">
-                    <Button variant="accent" size="lg" className="transition-all duration-200 hover:scale-102 hover:shadow-lg">
-                      <Truck className="mr-2" aria-hidden="true" />Book Pickup
-                    </Button>
-                  </a>
+                  {/* Removed book pickup button for release version */}
                 </div>
               </div>
             </div>
@@ -689,11 +685,7 @@ const Index = () => {
                   <MapPin className="mr-2" aria-hidden="true" />Directions
                 </Button>
               </a>
-              <a href="/book-pickup">
-                <Button variant="accent" className="transition-all duration-200 hover:scale-102 hover:shadow-lg hover:rotate-1">
-                  <Truck className="mr-2" aria-hidden="true" />Book Pickup
-                </Button>
-              </a>
+              {/* Removed book pickup button for release version */}
             </div>
           </div>
         </section>

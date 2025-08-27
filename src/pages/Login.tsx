@@ -40,7 +40,7 @@ const Login = () => {
       if (error) throw error;
 
       toast.success("Welcome back!");
-      navigate("/book-pickup"); // Redirect to booking page
+      navigate("/"); // Redirect to home page for release version
     } catch (error: any) {
       console.error("Sign in error:", error);
       toast.error("Sign in failed", {

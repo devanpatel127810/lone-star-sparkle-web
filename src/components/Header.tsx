@@ -46,87 +46,85 @@ const Header = () => {
           : "bg-background/80 backdrop-blur-sm"
       }`}
     >
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          <a
-            href="/"
-            className="flex items-center gap-2 font-extrabold text-xl transition-transform duration-200 hover:scale-105 hover:rotate-1 flex-shrink-0"
-          >
-            <span className="hidden lg:inline">Lone Star Wash & Dry</span>
-            <span className="hidden sm:inline lg:hidden">Lone Star</span>
-            <span className="sm:hidden">LSWD</span>
-          </a>
+      <div className="flex items-center justify-between w-full px-4 py-4">
+        <a
+          href="/"
+          className="flex items-center gap-2 font-extrabold text-xl transition-transform duration-200 hover:scale-105 hover:rotate-1 flex-shrink-0"
+        >
+          <span className="hidden lg:inline">Lone Star Wash & Dry</span>
+          <span className="hidden sm:inline lg:hidden">Lone Star</span>
+          <span className="sm:hidden">LSWD</span>
+        </a>
 
-          <nav className="hidden md:flex items-center gap-4 lg:gap-6 mx-4">
+        <nav className="hidden md:flex items-center gap-4 lg:gap-6 mx-4">
+          {links.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="text-sm font-medium relative group transition-all duration-200 hover:text-accent hover:scale-105 whitespace-nowrap"
+            >
+              {link.label}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-200 group-hover:w-full" />
+            </a>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-1.5 flex-shrink-0">
+          <div className="flex items-center gap-2">
+            {user ? (
+              <>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={signOut}
+                  className="transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-accent hover:text-accent-foreground"
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Logout
+                </Button>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <User className="w-4 h-4" />
+                  <span className="hidden sm:inline">{user.email}</span>
+                </div>
+              </>
+            ) : (
+              <a href="/login">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-accent hover:text-accent-foreground"
+                >
+                  Login
+                </Button>
+              </a>
+            )}
+          </div>
+          <button
+            onClick={() => setIsMobileMenuOpen((v) => !v)}
+            className="md:hidden p-2 rounded-md hover:bg-accent/10 transition-colors duration-200 hover:scale-110"
+            aria-label="Toggle navigation menu"
+          >
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+      </div>
+
+      {isMobileMenuOpen && (
+        <nav className="md:hidden mt-4 pb-4 border-t border-border/50 px-4">
+          <div className="flex flex-col gap-3 pt-4">
             {links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium relative group transition-all duration-200 hover:text-accent hover:scale-105 whitespace-nowrap"
+                className="text-sm font-medium py-2 px-3 rounded-md hover:bg-accent/10 transition-all duration-200 hover:scale-105 hover:translate-x-1"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-200 group-hover:w-full" />
               </a>
             ))}
-          </nav>
-
-          <div className="flex items-center gap-1.5 flex-shrink-0">
-            <div className="flex items-center gap-2">
-              {user ? (
-                <>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={signOut}
-                    className="transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-accent hover:text-accent-foreground"
-                  >
-                    <LogOut className="w-4 h-4 mr-2" />
-                    Logout
-                  </Button>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <User className="w-4 h-4" />
-                    <span className="hidden sm:inline">{user.email}</span>
-                  </div>
-                </>
-              ) : (
-                <a href="/login">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-accent hover:text-accent-foreground"
-                  >
-                    Login
-                  </Button>
-                </a>
-              )}
-            </div>
-            <button
-              onClick={() => setIsMobileMenuOpen((v) => !v)}
-              className="md:hidden p-2 rounded-md hover:bg-accent/10 transition-colors duration-200 hover:scale-110"
-              aria-label="Toggle navigation menu"
-            >
-              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
           </div>
-        </div>
-
-        {isMobileMenuOpen && (
-          <nav className="md:hidden mt-4 pb-4 border-t border-border/50">
-            <div className="flex flex-col gap-3 pt-4">
-              {links.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm font-medium py-2 px-3 rounded-md hover:bg-accent/10 transition-all duration-200 hover:scale-105 hover:translate-x-1"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          </nav>
-        )}
-      </div>
+        </nav>
+      )}
     </header>
   );
 };
