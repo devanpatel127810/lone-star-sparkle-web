@@ -31,8 +31,8 @@ const Header = () => {
       { label: "Pricing", href: isHome ? "#pricing" : "/#pricing" },
       { label: "Services", href: isHome ? "#services" : "/#services" },
       { label: "Locations", href: isHome ? "#reviews" : "/#reviews" },
-      { label: "Book Pickup", href: "/book-pickup" },
-      ...(user ? [{ label: "My Pickups", href: "/my-pickups" }] : []),
+      // Removed "Book Pickup" link for release version
+      // Removed "My Pickups" link for release version
       ...(user?.email === "devan127810@gmail.com" ? [{ label: "Admin", href: "/admin" }] : []),
     ],
     [isHome, user]
@@ -62,9 +62,7 @@ const Header = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium relative group transition-all duration-200 hover:text-accent hover:scale-105 whitespace-nowrap ${
-                  location.pathname === "/book-pickup" && link.href === "/book-pickup" ? "text-accent" : ""
-                }`}
+                className="text-sm font-medium relative group transition-all duration-200 hover:text-accent hover:scale-105 whitespace-nowrap"
               >
                 {link.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-200 group-hover:w-full" />
@@ -119,9 +117,7 @@ const Header = () => {
                 <a
                   key={link.href}
                   href={link.href}
-                  className={`text-sm font-medium py-2 px-3 rounded-md hover:bg-accent/10 transition-all duration-200 hover:scale-105 hover:translate-x-1 ${
-                    location.pathname === "/book-pickup" && link.href === "/book-pickup" ? "bg-accent/10 text-accent" : ""
-                  }`}
+                  className="text-sm font-medium py-2 px-3 rounded-md hover:bg-accent/10 transition-all duration-200 hover:scale-105 hover:translate-x-1"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}

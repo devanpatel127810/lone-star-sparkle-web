@@ -7,8 +7,7 @@ import Header from "@/components/Header";
 
 const Index = lazy(() => import("./pages/Index"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-const BookPickup = lazy(() => import("./pages/BookPickup"));
-const MyPickups = lazy(() => import("./pages/MyPickups"));
+// Removed BookPickup and MyPickups imports for release version
 const Admin = lazy(() => import("./pages/Admin"));
 const Login = lazy(() => import("./pages/Login"));
 const ResetPassword = lazy(() => import("./pages/ResetPassword"));
@@ -31,8 +30,7 @@ const App = () => (
         <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center text-muted-foreground">Loading...</div>}>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/book-pickup" element={<BookPickup />} />
-            <Route path="/my-pickups" element={<MyPickups />} />
+            {/* Removed /book-pickup and /my-pickups routes for release version */}
             <Route 
               path="/admin" 
               element={
