@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { Booking } from '../types';
+import { emailService, type BookingData } from '../lib/emailService';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { Calendar, Clock, Package, User, MapPin, Phone, Mail, Settings, History, AlertCircle, CheckCircle, XCircle } from 'lucide-react';
+import { Calendar, Clock, Package, MapPin, Phone, Settings, History, AlertCircle, CheckCircle, XCircle } from 'lucide-react';
 
 export default function MyPickups() {
   const [bookings, setBookings] = useState<Booking[]>([]);
@@ -80,6 +81,9 @@ export default function MyPickups() {
 
   const handleCancelBooking = async (bookingId: string) => {
     try {
+      // Find the booking to get customer email
+      const booking = bookings.find(b => b.id === bookingId);
+      
       const { error } = await supabase
         .from('bookings')
         .update({ status: 'cancelled' })
@@ -88,6 +92,29 @@ export default function MyPickups() {
       if (error) {
         console.error('Error cancelling booking:', error);
         return;
+      }
+
+      // Send cancellation email if customer has email
+      if (booking && booking.customer_email) {
+        const bookingData: BookingData = {
+          id: booking.id,
+          customer_name: booking.customer_name,
+          customer_phone: booking.phone,
+          customer_email: booking.customer_email,
+          pickup_date: booking.pickup_date,
+          pickup_time: booking.pickup_time,
+          service_type: booking.service_type,
+          customer_address: booking.pickup_address,
+          special_instructions: booking.special_instructions,
+          status: 'cancelled',
+          created_at: booking.created_at
+        };
+
+        try {
+          await emailService.sendStatusUpdate(bookingData, 'cancelled');
+        } catch (emailError) {
+          console.error('Failed to send cancellation email:', emailError);
+        }
       }
 
       // Refresh bookings

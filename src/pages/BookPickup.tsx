@@ -6,12 +6,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Phone, MapPin, CheckCircle, AlertCircle, Loader2, User, Calendar, Clock } from "lucide-react";
+import { Phone, MapPin, CheckCircle, AlertCircle, Loader2, Clock } from "lucide-react";
 import site from "@/content/site.json";
 import { supabase } from "@/lib/supabase";
 import { useAuth } from "../hooks/useAuth";
+import { emailService, scheduleReminder, type BookingData } from "@/lib/emailService";
 
 // Enhanced validation schema with updated business rules
 const schema = z.object({
@@ -160,33 +160,7 @@ const BookPickup = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionStatus, setSubmissionStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [lastBooking, setLastBooking] = useState<any>(null);
-  // Generate 15-minute increment times from 9:00 AM to 6:00 PM in 12-hour format
-  const generateTimeOptions = () => {
-    const times = [];
-    for (let hour = 9; hour <= 18; hour++) {
-      for (let minute = 0; minute < 60; minute += 15) {
-        if (hour === 18 && minute > 0) break; // Stop at 6:00 PM
-        
-        let displayHour = hour;
-        let period = 'AM';
-        
-        if (hour === 0) {
-          displayHour = 12;
-        } else if (hour === 12) {
-          period = 'PM';
-        } else if (hour > 12) {
-          displayHour = hour - 12;
-          period = 'PM';
-        }
-        
-        const timeString = `${displayHour}:${minute.toString().padStart(2, '0')} ${period}`;
-        times.push(timeString);
-      }
-    }
-    return times;
-  };
   
-  const [availableTimes] = useState(generateTimeOptions());
 
   useEffect(() => {
     document.title = "Book Pickup and Delivery | Lone Star Wash & Dry";
@@ -221,10 +195,12 @@ const BookPickup = () => {
             user_id: user?.id || null, // Allow null for guest bookings
             customer_name: values.full_name,
             customer_phone: values.phone,
+            customer_email: values.email || null, // Store email in database
             pickup_date: values.pickup_date,
             pickup_time: values.pickup_time,
             service_type: "Wash & Fold", // Fixed service type
             customer_address: values.pickup_address,
+            pickup_address: values.pickup_address, // Also store as pickup_address for compatibility
             special_instructions: values.special_instructions || undefined,
             status: 'pending',
           }
@@ -250,10 +226,54 @@ const BookPickup = () => {
       // Success!
       setSubmissionStatus('success');
       setLastBooking(booking);
+      
+      // Send confirmation email if email is provided
+      if (values.email && values.email.trim() !== '') {
+        const bookingData: BookingData = {
+          id: booking.id,
+          customer_name: values.full_name,
+          customer_phone: values.phone,
+          customer_email: values.email,
+          pickup_date: values.pickup_date,
+          pickup_time: values.pickup_time,
+          service_type: "Wash & Fold",
+          customer_address: values.pickup_address,
+          special_instructions: values.special_instructions,
+          status: 'pending',
+          created_at: booking.created_at
+        };
+
+        try {
+          // Send confirmation email
+          const emailSent = await emailService.sendBookingConfirmation(bookingData);
+          
+          if (emailSent) {
+            // Schedule reminder email for day before pickup
+            await scheduleReminder(bookingData);
+            
+            toast.success("Booking submitted successfully!", {
+              description: `Confirmation email sent! We'll contact you shortly to confirm your Wash & Fold pickup on ${values.pickup_date} at ${values.pickup_time}.`,
+              duration: 5000,
+            });
+          } else {
+            toast.success("Booking submitted successfully!", {
+              description: `We'll contact you shortly to confirm your Wash & Fold pickup on ${values.pickup_date} at ${values.pickup_time}.`,
+              duration: 5000,
+            });
+          }
+        } catch (emailError) {
+          console.error('Email sending failed:', emailError);
+          toast.success("Booking submitted successfully!", {
+            description: `We'll contact you shortly to confirm your Wash & Fold pickup on ${values.pickup_date} at ${values.pickup_time}.`,
+            duration: 5000,
+          });
+        }
+      } else {
       toast.success("Booking submitted successfully!", {
-        description: `We'll contact you shortly to confirm your Wash & Fold pickup on ${values.pickup_date} at ${values.pickup_time}.`,
+          description: `We'll contact you shortly to confirm your Wash & Fold pickup on ${values.pickup_date} at ${values.pickup_time}.`,
         duration: 5000,
       });
+      }
       
       form.reset();
       
@@ -457,9 +477,9 @@ const BookPickup = () => {
                 )}
               />
 
-              <FormField
-                name="pickup_date"
-                control={form.control}
+                <FormField
+                  name="pickup_date"
+                  control={form.control}
                                   render={({ field, fieldState }) => {
                     const selectedDate = field.value ? new Date(field.value) : null;
                     const isSunday = selectedDate && selectedDate.getDay() === 0;
@@ -512,11 +532,11 @@ const BookPickup = () => {
                     </FormItem>
                   );
                 }}
-              />
+                />
 
-              <FormField
-                name="pickup_time"
-                control={form.control}
+                <FormField
+                  name="pickup_time"
+                  control={form.control}
                 render={({ field }) => {
                   const [selectedHour, setSelectedHour] = useState<number>(9);
                   const [selectedMinute, setSelectedMinute] = useState<number>(0);
@@ -680,7 +700,7 @@ const BookPickup = () => {
                     </FormItem>
                   );
                 }}
-              />
+                />
 
               <FormField
                 name="pickup_address"

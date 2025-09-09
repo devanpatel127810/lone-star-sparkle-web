@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { Search, Filter, Eye, CheckCircle, XCircle, Clock, Loader2, RefreshCw } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { Booking } from "@/types";
+import EmailNotifications from "@/components/EmailNotifications";
 
 const Admin = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
@@ -409,6 +410,11 @@ const Admin = () => {
           )}
         </CardContent>
       </Card>
+
+      {/* Email Notifications Section */}
+      <div className="mt-8">
+        <EmailNotifications isAdmin={true} />
+      </div>
     </div>
   );
 };
