@@ -4,12 +4,14 @@ import { Booking } from '../types';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
-import { Calendar, Clock, Package, User } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
+import { Calendar, Clock, Package, User, MapPin, Phone, Mail, Settings, History, AlertCircle, CheckCircle, XCircle } from 'lucide-react';
 
 export default function MyPickups() {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState('upcoming');
 
   useEffect(() => {
     fetchBookings();
@@ -45,9 +47,21 @@ export default function MyPickups() {
     switch (status) {
       case 'confirmed': return 'bg-green-100 text-green-800';
       case 'pending': return 'bg-yellow-100 text-yellow-800';
+      case 'in_progress': return 'bg-purple-100 text-purple-800';
       case 'completed': return 'bg-blue-100 text-blue-800';
       case 'cancelled': return 'bg-red-100 text-red-800';
       default: return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  const getStatusIcon = (status: string) => {
+    switch (status) {
+      case 'pending': return <AlertCircle className="h-4 w-4" />;
+      case 'confirmed': return <CheckCircle className="h-4 w-4" />;
+      case 'in_progress': return <Package className="h-4 w-4" />;
+      case 'completed': return <CheckCircle className="h-4 w-4" />;
+      case 'cancelled': return <XCircle className="h-4 w-4" />;
+      default: return <Clock className="h-4 w-4" />;
     }
   };
 
@@ -64,8 +78,35 @@ export default function MyPickups() {
     return new Date(dateString) >= new Date();
   };
 
-  const upcomingBookings = bookings.filter(booking => isUpcoming(booking.pickup_date));
-  const pastBookings = bookings.filter(booking => !isUpcoming(booking.pickup_date));
+  const handleCancelBooking = async (bookingId: string) => {
+    try {
+      const { error } = await supabase
+        .from('bookings')
+        .update({ status: 'cancelled' })
+        .eq('id', bookingId);
+
+      if (error) {
+        console.error('Error cancelling booking:', error);
+        return;
+      }
+
+      // Refresh bookings
+      fetchBookings();
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const upcomingBookings = bookings.filter(booking => 
+    isUpcoming(booking.pickup_date) && 
+    booking.status !== 'completed' && 
+    booking.status !== 'cancelled'
+  );
+  const pastBookings = bookings.filter(booking => 
+    !isUpcoming(booking.pickup_date) || 
+    booking.status === 'completed' || 
+    booking.status === 'cancelled'
+  );
 
   if (loading) {
     return (
@@ -88,102 +129,221 @@ export default function MyPickups() {
 
   return (
     <div className="space-y-6">
+      {/* Header */}
       <div className="text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">My Pickups</h2>
-        <p className="text-gray-600">Manage your laundry pickup schedule</p>
+        <h2 className="text-3xl font-bold text-gray-900 mb-2">My Pickups</h2>
+        <p className="text-gray-600">Manage your laundry pickup schedule and track progress</p>
       </div>
 
-      {/* Upcoming Pickups */}
-      <div>
-        <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-          <Calendar className="w-5 h-5 mr-2 text-blue-600" />
-          Upcoming Pickups ({upcomingBookings.length})
-        </h3>
-        {upcomingBookings.length === 0 ? (
-          <Card>
-            <CardContent className="text-center py-8">
-              <Package className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600">No upcoming pickups</p>
-              <p className="text-sm text-gray-500">Book your first pickup to get started!</p>
-            </CardContent>
-          </Card>
-        ) : (
-          <div className="space-y-3">
-            {upcomingBookings.map((booking) => (
-              <Card key={booking.id} className="border-l-4 border-l-blue-500">
-                <CardContent className="p-4">
-                  <div className="flex items-start justify-between">
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Upcoming Pickups</CardTitle>
+            <Calendar className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{upcomingBookings.length}</div>
+            <p className="text-xs text-muted-foreground">
+              {upcomingBookings.length === 1 ? 'pickup' : 'pickups'} scheduled
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Total Bookings</CardTitle>
+            <History className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{bookings.length}</div>
+            <p className="text-xs text-muted-foreground">
+              {bookings.length === 1 ? 'booking' : 'bookings'} all time
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Completed Services</CardTitle>
+            <Package className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">
+              {bookings.filter(b => b.status === 'completed').length}
+            </div>
+            <p className="text-xs text-muted-foreground">
+              services completed
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Main Content with Tabs */}
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="upcoming">Upcoming Pickups</TabsTrigger>
+          <TabsTrigger value="history">Booking History</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="upcoming" className="space-y-4">
+          {upcomingBookings.length === 0 ? (
+            <Card>
+              <CardContent className="flex flex-col items-center justify-center py-12">
+                <Calendar className="h-12 w-12 text-gray-400 mb-4" />
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">No upcoming pickups</h3>
+                <p className="text-gray-600 text-center mb-4">
+                  You don't have any scheduled pickups. Book a new pickup to get started!
+                </p>
+                <Button asChild>
+                  <a href="/book-pickup">Book New Pickup</a>
+                </Button>
+              </CardContent>
+            </Card>
+          ) : (
+            upcomingBookings.map((booking) => (
+              <Card key={booking.id} className="hover:shadow-md transition-shadow">
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="flex items-center space-x-2">
+                        {getStatusIcon(booking.status)}
+                        <Badge className={getStatusColor(booking.status)}>
+                          {booking.status.replace('_', ' ').toUpperCase()}
+                        </Badge>
+                      </div>
+                      <div>
+                        <CardTitle className="text-lg">
+                          {formatDate(booking.pickup_date)} at {booking.pickup_time}
+                        </CardTitle>
+                        <CardTitle className="text-sm text-muted-foreground">
+                          {booking.service_type} • {booking.full_name}
+                        </CardTitle>
+                      </div>
+                    </div>
+                    {booking.status === 'pending' && (
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => handleCancelBooking(booking.id)}
+                        className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                      >
+                        Cancel
+                      </Button>
+                    )}
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <div className="flex items-center space-x-2">
-                        <Calendar className="w-4 h-4 text-gray-500" />
-                        <span className="font-medium">{formatDate(booking.pickup_date)}</span>
+                      <div className="flex items-center space-x-2 text-sm">
+                        <MapPin className="h-4 w-4 text-gray-500" />
+                        <span className="text-gray-600">{booking.pickup_address}</span>
                       </div>
-                      <div className="flex items-center space-x-2">
-                        <Clock className="w-4 h-4 text-gray-500" />
-                        <span>{booking.pickup_time}</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Package className="w-4 h-4 text-gray-500" />
-                        <span className="capitalize">{booking.service_type.replace('_', ' ')}</span>
+                      <div className="flex items-center space-x-2 text-sm">
+                        <Phone className="h-4 w-4 text-gray-500" />
+                        <span className="text-gray-600">{booking.phone}</span>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <Badge className={getStatusColor(booking.status)}>
-                        {booking.status}
-                      </Badge>
-                    </div>
+                    {booking.special_instructions && (
+                      <div className="space-y-2">
+                        <h4 className="font-medium text-sm">Special Instructions:</h4>
+                        <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded-md">
+                          {booking.special_instructions}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>
-            ))}
-          </div>
-        )}
-      </div>
+            ))
+          )}
+        </TabsContent>
 
-      {/* Past Pickups */}
-      <div>
-        <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-          <Calendar className="w-5 h-5 mr-2 text-gray-500" />
-          Past Pickups ({pastBookings.length})
-        </h3>
-        {pastBookings.length === 0 ? (
-          <Card>
-            <CardContent className="text-center py-8">
-              <p className="text-gray-600">No past pickups</p>
-            </CardContent>
-          </Card>
-        ) : (
-          <div className="space-y-3">
-            {pastBookings.map((booking) => (
-              <Card key={booking.id} className="border-l-4 border-l-gray-300">
-                <CardContent className="p-4">
-                  <div className="flex items-start justify-between">
+        <TabsContent value="history" className="space-y-4">
+          {pastBookings.length === 0 ? (
+            <Card>
+              <CardContent className="flex flex-col items-center justify-center py-12">
+                <History className="h-12 w-12 text-gray-400 mb-4" />
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">No booking history</h3>
+                <p className="text-gray-600 text-center">
+                  Your completed and cancelled bookings will appear here.
+                </p>
+              </CardContent>
+            </Card>
+          ) : (
+            pastBookings.map((booking) => (
+              <Card key={booking.id} className="hover:shadow-md transition-shadow">
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="flex items-center space-x-2">
+                        {getStatusIcon(booking.status)}
+                        <Badge className={getStatusColor(booking.status)}>
+                          {booking.status.replace('_', ' ').toUpperCase()}
+                        </Badge>
+                      </div>
+                      <div>
+                        <CardTitle className="text-lg">
+                          {formatDate(booking.pickup_date)} at {booking.pickup_time}
+                        </CardTitle>
+                        <CardTitle className="text-sm text-muted-foreground">
+                          {booking.service_type} • {booking.full_name}
+                        </CardTitle>
+                      </div>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <div className="flex items-center space-x-2">
-                        <Calendar className="w-4 h-4 text-gray-500" />
-                        <span className="font-medium">{formatDate(booking.pickup_date)}</span>
+                      <div className="flex items-center space-x-2 text-sm">
+                        <MapPin className="h-4 w-4 text-gray-500" />
+                        <span className="text-gray-600">{booking.pickup_address}</span>
                       </div>
-                      <div className="flex items-center space-x-2">
-                        <Clock className="w-4 h-4 text-gray-500" />
-                        <span>{booking.pickup_time}</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Package className="w-4 h-4 text-gray-500" />
-                        <span className="capitalize">{booking.service_type.replace('_', ' ')}</span>
+                      <div className="flex items-center space-x-2 text-sm">
+                        <Phone className="h-4 w-4 text-gray-500" />
+                        <span className="text-gray-600">{booking.phone}</span>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <Badge className={getStatusColor(booking.status)}>
-                        {booking.status}
-                      </Badge>
-                    </div>
+                    {booking.special_instructions && (
+                      <div className="space-y-2">
+                        <h4 className="font-medium text-sm">Special Instructions:</h4>
+                        <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded-md">
+                          {booking.special_instructions}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>
-            ))}
+            ))
+          )}
+        </TabsContent>
+      </Tabs>
+
+      {/* Quick Actions */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center space-x-2">
+            <Settings className="h-5 w-5" />
+            <span>Quick Actions</span>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-wrap gap-4">
+            <Button asChild>
+              <a href="/book-pickup">Book New Pickup</a>
+            </Button>
+            <Button variant="outline" asChild>
+              <a href="/profile">Update Profile</a>
+            </Button>
+            <Button variant="outline" asChild>
+              <a href="/contact">Contact Support</a>
+            </Button>
           </div>
-        )}
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
