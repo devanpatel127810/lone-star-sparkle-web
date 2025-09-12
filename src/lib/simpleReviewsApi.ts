@@ -17,15 +17,10 @@ export async function getLocationReviews(locationName: string, city: string): Pr
     // Step 1: Search for the place
     const searchQuery = `${locationName} ${city}`;
     
-    // Use CORS proxy for development, direct API for production
-    const isDevelopment = import.meta.env.DEV;
-    const baseUrl = isDevelopment 
-      ? 'https://api.allorigins.win/raw?url='
-      : '';
+    // Use CORS proxy for both development and production
+    const baseUrl = 'https://api.allorigins.win/raw?url=';
     
-    const searchUrl = isDevelopment 
-      ? `${baseUrl}${encodeURIComponent(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${encodeURIComponent(searchQuery)}&key=${API_KEY}`)}`
-      : `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${encodeURIComponent(searchQuery)}&key=${API_KEY}`;
+    const searchUrl = `${baseUrl}${encodeURIComponent(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${encodeURIComponent(searchQuery)}&key=${API_KEY}`)}`;
     
     const searchResponse = await fetch(searchUrl);
     const searchData = await searchResponse.json();
@@ -43,9 +38,7 @@ export async function getLocationReviews(locationName: string, city: string): Pr
     const placeId = searchData.results[0].place_id;
     
     // Step 2: Get place details with reviews
-    const detailsUrl = isDevelopment 
-      ? `${baseUrl}${encodeURIComponent(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews&key=${API_KEY}`)}`
-      : `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews&key=${API_KEY}`;
+    const detailsUrl = `${baseUrl}${encodeURIComponent(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews&key=${API_KEY}`)}`;
     
     const detailsResponse = await fetch(detailsUrl);
     const detailsData = await detailsResponse.json();
