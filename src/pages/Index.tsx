@@ -112,7 +112,7 @@ const Index = () => {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: site.name,
-    image: "https://lovable.dev/opengraph-image-p98pqg.png",
+    image: "https://laundrypatrol.com/src/assets/hero-lone-star.webp",
     telephone: phone,
     address: {
       "@type": "PostalAddress",

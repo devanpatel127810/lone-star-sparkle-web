@@ -2,7 +2,7 @@
 
 A fast, mobile‑first laundromat website for the DFW area. Built with React + Vite + TypeScript + Tailwind (shadcn‑ui). Includes SEO, structured data, sitemap, and accessible UX.
 
-Note: The original request preferred Next.js, but this project runs on Lovable (Vite + React). This delivers the same Jamstack benefits: static hosting, great performance, and easy deployment.
+Note: Built with React + Vite + TypeScript + Tailwind (shadcn‑ui). This delivers Jamstack benefits: static hosting, great performance, and easy deployment.
 
 ## Quick start
 
