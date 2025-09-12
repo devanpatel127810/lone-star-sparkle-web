@@ -70,35 +70,7 @@ const Header = () => {
         </nav>
 
         <div className="flex items-center gap-1.5 flex-shrink-0">
-          <div className="flex items-center gap-2">
-            {user ? (
-              <>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={signOut}
-                  className="transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-accent hover:text-accent-foreground"
-                >
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Logout
-                </Button>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <User className="w-4 h-4" />
-                  <span className="hidden sm:inline">{user.email}</span>
-                </div>
-              </>
-            ) : (
-              <a href="/login">
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-accent hover:text-accent-foreground"
-                >
-                  Login
-                </Button>
-              </a>
-            )}
-          </div>
+          {/* Login/logout functionality hidden for release version */}
           <button
             onClick={() => setIsMobileMenuOpen((v) => !v)}
             className="md:hidden p-2 rounded-md hover:bg-accent/10 transition-colors duration-200 hover:scale-110"
