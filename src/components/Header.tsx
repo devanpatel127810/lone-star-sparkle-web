@@ -46,17 +46,19 @@ const Header = () => {
           : "bg-background/80 backdrop-blur-sm"
       }`}
     >
-      <div className="flex items-center justify-between w-full px-4 py-4">
+      <div className="flex items-center justify-center w-full px-4 py-4 relative">
+        {/* Logo positioned absolutely to the left */}
         <a
           href="/"
-          className="flex items-center gap-2 font-extrabold text-xl transition-transform duration-200 hover:scale-105 hover:rotate-1 flex-shrink-0"
+          className="absolute left-4 flex items-center gap-2 font-extrabold text-xl transition-transform duration-200 hover:scale-105 hover:rotate-1 flex-shrink-0"
         >
           <span className="hidden lg:inline">Lone Star Wash & Dry</span>
           <span className="hidden sm:inline lg:hidden">Lone Star</span>
           <span className="sm:hidden">LSWD</span>
         </a>
 
-        <nav className="hidden md:flex items-center gap-4 lg:gap-6 mx-4">
+        {/* Centered navigation */}
+        <nav className="hidden md:flex items-center gap-4 lg:gap-6">
           {links.map((link) => (
             <a
               key={link.href}
@@ -69,8 +71,8 @@ const Header = () => {
           ))}
         </nav>
 
-        <div className="flex items-center gap-1.5 flex-shrink-0">
-          {/* Login/logout functionality hidden for release version */}
+        {/* Mobile menu button positioned absolutely to the right */}
+        <div className="absolute right-4 flex items-center gap-1.5 flex-shrink-0">
           <button
             onClick={() => setIsMobileMenuOpen((v) => !v)}
             className="md:hidden p-2 rounded-md hover:bg-accent/10 transition-colors duration-200 hover:scale-110"
